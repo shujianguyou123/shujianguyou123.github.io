@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>忻州市</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* 导航栏 */
+        .nav {
+            position: sticky;
+            top: 0;
+            background-color: #b72424;
+            padding: 14px 0;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 0 10px;
+        }
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 14px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+        .nav a:hover {
+            background-color: #fff;
+            color: #b72424;
+        }
+
+        /* 顶部横幅 */
+        .header-banner {
+            width: 100%;
+            height: 400px;
+            background-color: #eee;
+            position: relative;
+            overflow: hidden;
+        }
+        .header-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .header-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+        .header-title h1 {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        .header-title p {
+            font-size: 24px;
+        }
+
+        /* 主体内容 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* 县区模块 */
+        .district {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+            scroll-margin-top: 90px;
+        }
+        .district h2 {
+            font-size: 28px;
+            color: #b72424;
+            margin-bottom: 24px;
+            border-left: 6px solid #b72424;
+            padding-left: 14px;
+        }
+
+        /* 景点卡片 */
+        .spot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            background-color: #eee;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-right: 6px;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .badge-5a { background-color: #e63946; }
+        .badge-a { background-color: #457b9d; }
+        .badge-guo { background-color: #f4a261; }
+
+        .info {
+            margin: 10px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .ticket {
+            color: #c92a2a;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+        .near {
+            font-size: 13px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* 返回顶部按钮 */
+        #backTop {
+            position: fixed;
+            bottom: 40px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #b72424;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+        #backTop:hover {
+            background-color: #d32f2f;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #888;
+            font-size: 14px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="nav">
+        <div class="nav-container">
+            <a href="#xinfu">忻府区</a>
+            <a href="#daixian">代县</a>
+            <a href="#wutai">五台县</a>
+            <a href="#fanshi">繁峙县</a>
+            <a href="#ningwu">宁武县</a>
+            <a href="#pianguan">偏关县</a>
+            <a href="#dingxiang">定襄县</a>
+            <a href="#yuanping">原平市</a>
+        </div>
+    </div>
+
+    <!-- 顶部横幅 -->
+    <div class="header-banner">
+        <img src="忻州.jpg" alt="忻州旅游封面">
+        <div class="header-title">
+            <h1>忻州市</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 忻府区 -->
+        <section class="district" id="xinfu">
+            <h2>忻府区</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="忻州古城.jpg" alt="忻州古城">
+                    <div class="card-body">
+                        <div class="card-name">忻州古城</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">秀容古城，东汉始建，晋北文旅核心，非遗美食聚集地。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：金洞寺、忻口战役遗址</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="禹王洞.jpg" alt="禹王洞">
+                    <div class="card-body">
+                        <div class="card-name">禹王洞</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">华北最大溶洞群，洞内恒温，喀斯特地貌奇观。</div>
+                        <div class="ticket">门票：60元</div>
+                        <div class="near">附近景点：陀罗山、貂蝉故里</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 代县 -->
+        <section class="district" id="daixian">
+            <h2>代县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="雁门关.jpg" alt="雁门关">
+                    <div class="card-body">
+                        <div class="card-name">代县雁门关景区</div>
+                        <span class="badge badge-5a">5A景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">天下九塞，雁门为首，长城重要关隘，杨家将故事发生地。</div>
+                        <div class="ticket">门票：90元</div>
+                        <div class="near">附近景点：边靖楼、阿育王塔、代县文庙</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="边靖楼.jpg" alt="边靖楼">
+                    <div class="card-body">
+                        <div class="card-name">边靖楼</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">明代鼓楼，气势恢宏，“声闻四达”巨匾闻名天下。</div>
+                        <div class="ticket">门票：20元</div>
+                        <div class="near">附近景点：阿育王塔、代县文庙</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="阿育王塔.jpg" alt="阿育王塔">
+                    <div class="card-body">
+                        <div class="card-name">阿育王塔</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">元代喇嘛塔，造型古朴，佛教文化重要遗存。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：边靖楼、代县古城</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 五台县 -->
+        <section class="district" id="wutai">
+            <h2>五台县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="五台山风景区.jpg" alt="五台山风景区">
+                    <div class="card-body">
+                        <div class="card-name">五台山风景区</div>
+                        <span class="badge badge-5a">5A景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">中国四大佛教名山之首，文殊菩萨道场，世界文化遗产。</div>
+                        <div class="ticket">门票：135元</div>
+                        <div class="near">附近景点：显通寺、塔院寺、菩萨顶、罗睺寺</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="佛光寺.jpg" alt="佛光寺">
+                    <div class="card-body">
+                        <div class="card-name">佛光寺</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">中国现存最大唐代木构建筑，“中国第一国宝”。</div>
+                        <div class="ticket">门票：15元</div>
+                        <div class="near">附近景点：南禅寺、广济寺</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="南禅寺.jpg" alt="南禅寺">
+                    <div class="card-body">
+                        <div class="card-name">南禅寺大殿</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">中国现存最早唐代木构建筑，历史价值极高。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：佛光寺、延庆寺</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 繁峙县 -->
+        <section class="district" id="fanshi">
+            <h2>繁峙县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="岩山寺.jpg" alt="岩山寺">
+                    <div class="card-body">
+                        <div class="card-name">岩山寺</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">金代壁画，被誉为“墙上清明上河图”，艺术瑰宝。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：公主寺、三圣寺</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="公主寺.jpg" alt="公主寺">
+                    <div class="card-body">
+                        <div class="card-name">公主寺</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">明代古寺，悬塑与壁画精美，保存完好。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：岩山寺、秘密寺</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 宁武县 -->
+        <section class="district" id="ningwu">
+            <h2>宁武县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="万年冰洞.jpg" alt="万年冰洞">
+                    <div class="card-body">
+                        <div class="card-name">万年冰洞</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">300万年天然冰洞，四季不化，恒温-4℃，地质奇观。</div>
+                        <div class="ticket">门票：80元</div>
+                        <div class="near">附近景点：芦芽山、悬崖栈道、石门悬棺</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="芦芽山.jpg" alt="芦芽山">
+                    <div class="card-body">
+                        <div class="card-name">芦芽山</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">国家级自然保护区，华北生态屏障，高山草甸风光。</div>
+                        <div class="ticket">门票：70元</div>
+                        <div class="near">附近景点：万年冰洞、汾河源头</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 偏关县 -->
+        <section class="district" id="pianguan">
+            <h2>偏关县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="老牛湾.jpg" alt="老牛湾">
+                    <div class="card-body">
+                        <div class="card-name">老牛湾</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">黄河入晋第一湾，长城与黄河“握手”之地，峡谷奇观。</div>
+                        <div class="ticket">门票：96元</div>
+                        <div class="near">附近景点：乾坤湾、偏关古城</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 定襄县 -->
+        <section class="district" id="dingxiang">
+            <h2>定襄县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="洪福寺.jpg" alt="洪福寺">
+                    <div class="card-body">
+                        <div class="card-name">洪福寺</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">金代大殿，宋代彩塑，全国唯一红脸文殊造像。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：定襄关王庙、西河头地道战遗址</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="阎锡山故居.jpg" alt="阎锡山故居">
+                    <div class="card-body">
+                        <div class="card-name">阎锡山故居</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">民国第一豪宅，晋北民俗博物馆，中西合璧建筑群。</div>
+                        <div class="ticket">门票：50元</div>
+                        <div class="near">附近景点：西河头地道战遗址</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 原平市 -->
+        <section class="district" id="yuanping">
+            <h2>原平市</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="天涯山.jpg" alt="天涯山">
+                    <div class="card-body">
+                        <div class="card-name">天涯山</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">奇峰怪石，忠孝文化名山，自然与人文相融。</div>
+                        <div class="ticket">门票：50元</div>
+                        <div class="near">附近景点：石鼓祠、原平惠济寺</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- 返回顶部按钮 -->
+    <button id="backTop">↑</button>
+
+    <footer>
+        五台山佛国 · 雁门雄关 · 晋北秘境
+    </footer>
+
+    <script>
+        // 返回顶部
+        const backTopBtn = document.getElementById('backTop');
+        window.addEventListener('scroll', function(){
+            backTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+        backTopBtn.addEventListener('click', function(){
+            window.scrollTo({top:0, behavior:'smooth'});
+        });
+    </script>
+</body>
+</html>

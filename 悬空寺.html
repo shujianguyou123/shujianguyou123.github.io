@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>悬空寺 - 山西旅游</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .banner {
+            height: 280px;
+            background: url("悬空.jpg") center/cover no-repeat;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .banner h1 {
+            font-size: 56px;
+            color: #fff;
+            font-style: italic;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+            letter-spacing: 3px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin: 25px 0 15px;
+            border-left: 4px solid #ff6b35;
+            padding-left: 12px;
+        }
+
+        .main-img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 10px 0 20px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 2;
+            color: #444;
+            margin-bottom: 16px;
+            text-indent: 2em;
+        }
+
+
+        .ticket-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .ticket-table th, .ticket-table td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        .ticket-table th {
+            background-color: #ff6b35;
+            color: #fff;
+        }
+
+        .ticket-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .route-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 3px solid #ff6b35;
+        }
+
+        .route-box h3 {
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+
+        .route-box p {
+            text-indent: 0;
+            line-height: 1.8;
+            margin: 6px 0;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .highlight-item {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            transition: 0.3s;
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .highlight-item h4 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .highlight-item p {
+            margin: 0;
+            text-indent: 0;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 18px;
+            border-radius: 8px;
+            border-left: 3px solid #ff6b35;
+        }
+
+        .info-card h4 {
+            color: #ff6b35;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .info-card p {
+            color: #555;
+            margin: 0;
+            text-indent: 0;
+            line-height: 1.7;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+            .banner h1 {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h1>悬空寺</h1>
+    </div>
+
+    <div class="container">
+        <h2>景点概览</h2>
+        <p>悬空寺位于山西省大同市浑源县恒山金龙峡西侧翠屏峰的峭壁间，建成于北魏太和十五年（公元491年），距今已有1500多年历史，是中国仅存的佛、道、儒三教合一的独特寺庙，也是世界建筑史上的奇迹。</p >
+        <p>整座寺院悬挂在悬崖之上，离地约50米，以半插横梁为基，巧借岩石为托，楼阁悬空，结构惊险奇巧，素有“悬空寺，半天高，三根马尾空中吊”的民间说法。2010年入选《时代周刊》世界十大不稳定建筑，是全国重点文物保护单位、国家AAAA级旅游景区。</p >
+
+        
+
+        <h2>🎫 门票价格（2026最新）</h2>
+        <table class="ticket-table">
+            <tr>
+                <th>票种</th>
+                <th>价格</th>
+                <th>备注</th>
+            </tr>
+            <tr>
+                <td>景区门票</td>
+                <td>15元</td>
+                <td>含外观参观</td>
+            </tr>
+            <tr>
+                <td>登临费</td>
+                <td>100元</td>
+                <td>上寺参观，限人流分批进入</td>
+            </tr>
+            <tr>
+                <td>学生票</td>
+                <td>半价</td>
+                <td>仅限门票，登临费不打折</td>
+            </tr>
+            <tr>
+                <td>免票政策</td>
+                <td colspan="2">6周岁以下/1.2米以下、60周岁以上、现役军人、残疾人（凭证）</td>
+            </tr>
+        </table>
+
+        <h2>🚶‍♂️ 推荐游览路线</h2>
+        <div class="route-box">
+            <h3>✅ 经典游览路线（1.5-2小时）</h3>
+            <p>入口 → 悬空寺步道 → 外观拍照点 → 排队登临 → 南楼 → 北楼 → 三教殿 → 出口</p >
+        </div>
+
+        <div class="route-box">
+            <h3>⭐ 必看亮点</h3>
+            <p>• 悬空奇构：全寺靠木梁支撑，悬于峭壁，惊险壮观</p >
+            <p>• 三教殿：佛、道、儒三教鼻祖共居一殿，国内罕见</p >
+            <p>• 栈道体验：窄梯盘旋，凌空行走，极具特色</p >
+            <p>• 远眺恒山：金龙峡风光尽收眼底，气势壮阔</p >
+        </div>
+
+        <div class="route-box">
+            <h3>⚠️ 游览贴士</h3>
+            <p>• 节假日登临需排队，建议早8点前到达</p >
+            <p>• 楼梯陡峭狭窄，老人儿童量力而行</p >
+            <p>• 寺内禁止奔跑、推搡，拍照注意安全</p >
+        </div>
+
+        <h2>建筑与文化特色</h2>
+        <p>悬空寺由北魏高僧了然主持修建，整体布局依山就势，充分利用悬崖的天然空间，将楼阁、栈道、殿堂融为一体。全寺分为南楼、北楼、三教殿三部分，共有殿阁40余间。建筑力学设计精妙绝伦，插入岩石的木梁千年不腐，是中国古代建筑智慧的巅峰体现。</p >
+        <p>作为全国罕见的三教合一寺庙，悬空寺既供奉释迦牟尼，也供奉老子与孔子，体现了北魏时期文化融合的时代特征，也成为中国宗教文化包容共生的重要象征。</p >
+
+        <h2>核心看点</h2>
+        <div class="highlights">
+            <div class="highlight-item">
+                <h4>凌空奇构</h4>
+                <p>悬于50米绝壁，看似几根木柱支撑，实为半插飞梁为基，建筑奇迹。</p >
+            </div>
+            <div class="highlight-item">
+                <h4>三教合一</h4>
+                <p>一寺同供佛、道、儒，文化融合独一无二，极具历史价值。</p >
+            </div>
+            <div class="highlight-item">
+                <h4>千年古建</h4>
+                <p>始建于北魏，历经千年风雨、地震考验，依然保存完好。</p >
+            </div>
+            <div class="highlight-item">
+                <h4>恒山胜景</h4>
+                <p>地处恒山金龙峡，绝壁对峙，峡谷幽深，自然风光与古建相得益彰。</p >
+            </div>
+        </div>
+
+        <h2>实用信息</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h4>开放时间</h4>
+                <p>夏季：8:00—18:00<br>冬季：8:30—17:00</p >
+            </div>
+            <div class="info-card">
+                <h4>景区等级</h4>
+                <p>国家AAAA级景区<br>全国重点文物保护单位</p >
+            </div>
+            <div class="info-card">
+                <h4>建议时长</h4>
+                <p>外观拍照：30分钟<br>登临游览：1.5-2小时</p >
+            </div>
+            <div class="info-card">
+                <h4>交通指南</h4>
+                <p>大同汽车站有直达大巴<br>自驾：导航悬空寺停车场</p >
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 山西旅游 · 悬空寺专题页面
+    </footer>
+</body>
+</html>

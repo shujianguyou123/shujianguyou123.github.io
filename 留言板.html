@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山西古建 - 留言板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
+        body {
+            background-color: #fdf6e9;
+            color: #5a3921;
+        }
+        /* 去掉左侧图片，整体宽度调整 */
+        .message-board {
+            width: 70%; 
+            margin: 30px auto;
+            background: #fff8e7;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .board-title {
+            text-align: center;
+            font-size: 22px;
+            color: #b94c26;
+            margin-bottom: 15px;
+        }
+        .input-area {
+            margin-bottom: 15px;
+        }
+        .input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        input {
+            padding: 8px 10px;
+            border: 1px solid #d9b894;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        #nameInput {
+            width: 40%;
+        }
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            border: 1px solid #d9b894;
+            border-radius: 6px;
+            font-size: 14px;
+            resize: none;
+        }
+        .star {
+            color: #ccc;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .star.active {
+            color: #ff9f00;
+        }
+        button {
+            background-color: #c45c3a;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #a83e22;
+        }
+        .message-list {
+            margin-top: 15px;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        .message-item {
+            background: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #d48a54;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #d48a54;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .msg-info {
+            flex: 1;
+        }
+        .name {
+            font-weight: bold;
+            color: #b94c26;
+        }
+        .time {
+            color: #999;
+            font-size: 12px;
+        }
+        .msg-text {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="message-board">
+    <h2 class="board-title">晋善晋美 · 留言板</h2>
+    
+    <div class="input-area">
+        <div class="input-row">
+            <input type="text" id="nameInput" placeholder="请输入昵称">
+            <div id="starBox">
+                <span class="star" data-score="1">★</span>
+                <span class="star" data-score="2">★</span>
+                <span class="star" data-score="3">★</span>
+                <span class="star" data-score="4">★</span>
+                <span class="star" data-score="5">★</span>
+            </div>
+        </div>
+        <textarea id="msgInput" placeholder="写下你的评价..."></textarea>
+        <button onclick="addMsg()">提交留言</button>
+    </div>
+
+    <div class="message-list" id="msgList"></div>
+</div>
+
+<script>
+    let score = 0;
+    const stars = document.querySelectorAll('.star');
+    stars.forEach(s => {
+        s.onclick = () => {
+            score = s.dataset.score;
+            stars.forEach(x => x.classList.remove('active'));
+            stars.forEach((x, i) => {
+                if(i < score) x.classList.add('active');
+            });
+        }
+    });
+
+    function addMsg() {
+        let name = document.getElementById("nameInput").value.trim();
+        let text = document.getElementById("msgInput").value.trim();
+        let list = document.getElementById("msgList");
+
+        if(!name || !text || score == 0) {
+            alert("请填写昵称、留言并选择星级！");
+            return;
+        }
+
+        let avatarText = name.charAt(0);
+        let time = new Date().toLocaleString();
+        let starHtml = '★'.repeat(score) + '☆'.repeat(5-score);
+
+        let item = document.createElement("div");
+        item.className = "message-item";
+        item.innerHTML = `
+            <div class="avatar">${avatarText}</div>
+            <div class="msg-info">
+                <div class="name">${name}</div>
+                <div class="star-show" style="color:#ff9f00">${starHtml}</div>
+                <div class="msg-text">${text}</div>
+                <div class="time">${time}</div>
+            </div>
+        `;
+
+        list.insertBefore(item, list.firstChild);
+        document.getElementById("nameInput").value = "";
+        document.getElementById("msgInput").value = "";
+        score = 0;
+        stars.forEach(x => x.classList.remove('active'));
+    }
+</script>
+
+</body>
+</html>

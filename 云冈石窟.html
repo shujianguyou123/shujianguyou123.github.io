@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云冈石窟 - 山西旅游</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .banner {
+            height: 280px;
+            background-image: url("云冈.jpg");
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .banner h1 {
+            font-size: 56px;
+            color: #fff;
+            font-style: italic;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+            letter-spacing: 3px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin: 25px 0 15px;
+            border-left: 4px solid #ff6b35;
+            padding-left: 12px;
+        }
+
+        .main-img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 10px 0 20px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 2;
+            color: #444;
+            margin-bottom: 16px;
+            text-indent: 2em;
+        }
+
+
+        /* 门票表格 */
+        .ticket-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: #fff;
+        }
+        .ticket-table th, .ticket-table td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: center;
+        }
+        .ticket-table th {
+            background-color: #ff6b35;
+            color: #fff;
+            font-size: 16px;
+        }
+        .ticket-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        /* 路线卡片 */
+        .route-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 3px solid #ff6b35;
+        }
+        .route-box h3 {
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+        .route-box p {
+            text-indent: 0;
+            margin: 6px 0;
+            line-height: 1.8;
+        }
+
+        /* 信息网格 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0 30px;
+        }
+        .info-card {
+            background: #f8f9fa;
+            padding: 18px;
+            border-radius: 8px;
+            border-left: 3px solid #ff6b35;
+        }
+        .info-card h4 {
+            color: #ff6b35;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        .info-card p {
+            color: #555;
+            margin: 0;
+            text-indent: 0;
+            line-height: 1.7;
+        }
+
+        /* 亮点 */
+        .highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .highlight-item {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            transition: 0.3s;
+        }
+        .highlight-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        .highlight-item h4 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        .highlight-item p {
+            margin: 0;
+            text-indent: 0;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+            .banner h1 {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="banner">
+    <h1></h1>
+</div>
+
+<div class="container">
+
+    <h2>景点概览</h2>
+    <p>云冈石窟位于山西省大同市城西约16公里武州山南麓，是北魏皇家开凿的大型佛教石窟群，世界文化遗产、国家5A级景区。现存主要洞窟45个、窟龛252个、造像5万余尊，与敦煌莫高窟、洛阳龙门石窟并称中国三大石窟。</p >
+    <p>石窟始凿于北魏和平元年（460年），历时约50年建成，艺术融合印度、中亚与中原风格，是佛教艺术中国化的里程碑。</p >
+
+
+    <h2>🎫 门票价格（2026最新）</h2>
+    <table class="ticket-table">
+        <tr>
+            <th>票种</th>
+            <th>旺季（4.1-10.31）</th>
+            <th>淡季（11.1-次年3.31）</th>
+        </tr>
+        <tr>
+            <td>成人票</td>
+            <td>120元</td>
+            <td>100元</td>
+        </tr>
+        <tr>
+            <td>学生票（本科及以下）</td>
+            <td>60元</td>
+            <td>50元</td>
+        </tr>
+        <tr>
+            <td>免票人群</td>
+            <td colspan="2">60岁以上老人、6岁以下/1.2米以下儿童、残疾人、现役军人（凭证）</td>
+        </tr>
+    </table>
+
+    <h2>🚶‍♂️ 推荐游览路线</h2>
+
+    <div class="route-box">
+        <h3>✅ 经典精华路线（3小时 · 推荐）</h3>
+        <p>入口 → 昙曜广场 → 礼佛大道 → 灵岩寺 → 昙曜五窟（16-20窟）→ 第5、6窟 → 五华洞（9-13窟） → 云冈博物馆 → 出口</p >
+    </div>
+
+    <div class="route-box">
+        <h3>⏱️ 深度一日游（5-6小时）</h3>
+        <p>入口 → 昙曜广场 → 礼佛大道 → 灵岩寺 → 东区（1-4窟） → 中区（5-13窟） → 西区（14-45窟） → 云冈博物馆 → 食货街 → 出口</p >
+    </div>
+
+    <div class="route-box">
+        <h3>⭐ 必看洞窟</h3>
+        <p>• 第20窟（露天大佛）：云冈标志，必打卡</p >
+        <p>• 第5、6窟：最高大佛+最精美塔柱</p >
+        <p>• 第16-20窟（昙曜五窟）：皇家气魄</p >
+        <p>• 第9-13窟（五华洞）：彩绘保存最好</p >
+    </div>
+
+    <h2>历史背景</h2>
+    <p>云冈石窟由北魏高僧昙曜主持开凿，是北魏王朝推崇佛教的国家工程。早期洞窟气势雄浑、西域风格浓厚；中后期逐渐汉化，造像更显清秀典雅。石窟见证了北魏政治、宗教、艺术的巅峰成就。</p >
+
+    <h2>核心看点</h2>
+    <div class="highlights">
+        <div class="highlight-item">
+            <h4>昙曜五窟（16-20窟）</h4>
+            <p>云冈最早皇家洞窟，大佛对应北魏五帝，气势雄伟，西域犍陀罗艺术巅峰。</p >
+        </div>
+        <div class="highlight-item">
+            <h4>第5、6窟（艺术双璧）</h4>
+            <p>5窟17米云冈最高大佛；6窟塔柱满布佛传故事，雕刻最精美。</p >
+        </div>
+        <div class="highlight-item">
+            <h4>五华洞（9-13窟）</h4>
+            <p>清代彩绘保存完好，题材丰富，展现北魏后期艺术风格。</p >
+        </div>
+        <div class="highlight-item">
+            <h4>文化融合</h4>
+            <p>融合印度、中亚、中原艺术，是佛教艺术中国化关键见证。</p >
+        </div>
+    </div>
+
+    <h2>实用信息</h2>
+    <div class="info-grid">
+        <div class="info-card">
+            <h4>开放时间</h4>
+            <p>旺季：8:00—18:00<br>淡季：8:30—17:30</p >
+        </div>
+        <div class="info-card">
+            <h4>景区等级</h4>
+            <p>国家AAAAA级景区<br>世界文化遗产</p >
+        </div>
+        <div class="info-card">
+            <h4>建议时长</h4>
+            <p>精华游：2.5-3小时<br>深度游：5-6小时</p >
+        </div>
+        <div class="info-card">
+            <h4>游览贴士</h4>
+            <p>上午光线最佳，适合拍照<br>穿舒适鞋，全程步行约3公里</p >
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    © 2025 山西旅游 · 云冈石窟专题页面
+</footer>
+
+</body>
+</html>

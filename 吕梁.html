@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吕梁市</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* 导航栏 */
+        .nav {
+            position: sticky;
+            top: 0;
+            background-color: #b72424;
+            padding: 14px 0;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 0 10px;
+        }
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 14px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+        .nav a:hover {
+            background-color: #fff;
+            color: #b72424;
+        }
+
+        /* 顶部横幅 */
+        .header-banner {
+            width: 100%;
+            height: 400px;
+            background-color: #eee;
+            position: relative;
+            overflow: hidden;
+        }
+        .header-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .header-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+        .header-title h1 {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        .header-title p {
+            font-size: 24px;
+        }
+
+        /* 主体内容 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* 县区模块 */
+        .district {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+            scroll-margin-top: 90px;
+        }
+        .district h2 {
+            font-size: 28px;
+            color: #b72424;
+            margin-bottom: 24px;
+            border-left: 6px solid #b72424;
+            padding-left: 14px;
+        }
+
+        /* 景点卡片 */
+        .spot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            background-color: #eee;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-right: 6px;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .badge-5a { background-color: #e63946; }
+        .badge-a { background-color: #457b9d; }
+        .badge-guo { background-color: #f4a261; }
+
+        .info {
+            margin: 10px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .ticket {
+            color: #c92a2a;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+        .near {
+            font-size: 13px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* 返回顶部按钮 */
+        #backTop {
+            position: fixed;
+            bottom: 40px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #b72424;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+        #backTop:hover {
+            background-color: #d32f2f;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #888;
+            font-size: 14px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="nav">
+        <div class="nav-container">
+            <a href="#lishi">离石区</a>
+            <a href="#jiaocheng">交城县</a>
+            <a href="#fenyang">汾阳市</a>
+            <a href="#xiaoyi">孝义市</a>
+            <a href="#linxian">临县</a>
+            <a href="#wenshui">文水县</a>
+            <a href="#fangshan">方山县</a>
+        </div>
+    </div>
+
+    <!-- 顶部横幅 -->
+    <div class="header-banner">
+        <img src="吕梁.jpg" alt="吕梁旅游封面">
+        <div class="header-title">
+            <h1>吕梁市</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 离石区 -->
+        <section class="district" id="lishi">
+            <h2>离石区</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="安国寺.jpg" alt="安国寺">
+                    <div class="card-body">
+                        <div class="card-name">安国寺</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">明代古建筑群，依山而建，环境清幽，历史文化底蕴深厚。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：天贞观、吕梁英雄广场</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="天贞观.jpg" alt="天贞观">
+                    <div class="card-body">
+                        <div class="card-name">天贞观</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">明清道教古建筑，山上道观，景色秀丽，文物保存完好。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：安国寺、凤山公园</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 交城县 -->
+        <section class="district" id="jiaocheng">
+            <h2>交城县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="玄中寺.jpg" alt="玄中寺">
+                    <div class="card-body">
+                        <div class="card-name">玄中寺</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">佛教净土宗祖庭，北魏始建，中日佛教文化交流圣地。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：卦山、庞泉沟</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="卦山.jpg" alt="卦山">
+                    <div class="card-body">
+                        <div class="card-name">卦山</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">山势如八卦，古柏奇观，唐代天宁寺闻名天下。</div>
+                        <div class="ticket">门票：40元</div>
+                        <div class="near">附近景点：玄中寺、华国锋陵园</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="庞泉沟.jpg" alt="庞泉沟">
+                    <div class="card-body">
+                        <div class="card-name">庞泉沟</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">国家级自然保护区，黄土高原“绿肺”，褐马鸡栖息地。</div>
+                        <div class="ticket">门票：50元</div>
+                        <div class="near">附近景点：北武当山、云顶山</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 汾阳市 -->
+        <section class="district" id="fenyang">
+            <h2>汾阳市</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="杏花村.jpg" alt="杏花村">
+                    <div class="card-body">
+                        <div class="card-name">杏花村</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">中华名酒第一村，汾酒发源地，千年酿酒历史传承。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：汾酒博物馆、太符观</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="贾家庄.jpg" alt="贾家庄">
+                    <div class="card-body">
+                        <div class="card-name">贾家庄</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">全国文明村，乡村旅游典范，生态园林与民俗文化融合。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：杏花村、汾酒文化景区</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 孝义市 -->
+        <section class="district" id="xiaoyi">
+            <h2>孝义市</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="三皇庙.jpg" alt="三皇庙">
+                    <div class="card-body">
+                        <div class="card-name">孝义三皇庙</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">元代古建筑，祭祀伏羲、神农、黄帝，历史艺术价值极高。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：中阳楼、慈胜寺</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 临县 -->
+        <section class="district" id="linxian">
+            <h2>临县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="碛口古镇.jpg" alt="碛口古镇">
+                    <div class="card-body">
+                        <div class="card-name">碛口古镇</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">黄河畔明清商贸重镇，活着的古镇，晋商文化重要遗存。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：李家山村、西湾村、黑龙庙</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="李家山村.jpg" alt="李家山村">
+                    <div class="card-body">
+                        <div class="card-name">李家山村</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">黄土高原窑洞建筑群，画家吴冠中誉为“世外桃源”。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：碛口古镇、西湾村</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 文水县 -->
+        <section class="district" id="wenshui">
+            <h2>文水县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="武则天庙.jpg" alt="武则天庙">
+                    <div class="card-body">
+                        <div class="card-name">武则天庙</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">金代古建筑，全国唯一纪念武则天的皇家庙宇。</div>
+                        <div class="ticket">门票：30元</div>
+                        <div class="near">附近景点：刘胡兰纪念馆、上贤梵安寺塔</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="刘胡兰纪念馆.jpg" alt="刘胡兰纪念馆">
+                    <div class="card-body">
+                        <div class="card-name">刘胡兰纪念馆</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">全国著名红色教育基地，缅怀革命先烈。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：武则天庙</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 方山县 -->
+        <section class="district" id="fangshan">
+            <h2>方山县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="北武当山.jpg" alt="北武当山">
+                    <div class="card-body">
+                        <div class="card-name">北武当山</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">北方道教名山，集雄、奇、险、秀于一体，三晋道教圣地。</div>
+                        <div class="ticket">门票：60元</div>
+                        <div class="near">附近景点：庞泉沟、于成龙故居</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- 返回顶部按钮 -->
+    <button id="backTop">↑</button>
+
+    <footer>
+        红色吕梁 · 黄河风情 · 道教名山 · 汾酒故里
+    </footer>
+
+    <script>
+        // 返回顶部
+        const backTopBtn = document.getElementById('backTop');
+        window.addEventListener('scroll', function(){
+            backTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+        backTopBtn.addEventListener('click', function(){
+            window.scrollTo({top:0, behavior:'smooth'});
+        });
+    </script>
+</body>
+</html>

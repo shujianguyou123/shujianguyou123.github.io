@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录注册</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 380px;
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        .tab-box {
+            display: flex;
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            color: #1677ff;
+            border-color: #1677ff;
+        }
+
+        .content {
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .input-box {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #1677ff;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #1677ff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #0d5bcd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="tab-box">
+        <div class="tab active" id="loginTab"> 登录</div>
+        <div class="tab" id="registerTab">注册</div>
+    </div>
+
+    <!-- 登录 -->
+    <div class="content active" id="loginForm">
+        <div class="input-box">
+            <input type="text" placeholder="请输入账号">
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="请输入密码">
+        </div>
+        <a href="首页.html"<button class="btn">登录</button></a>
+    </div>
+
+    <!-- 注册 -->
+    <div class="content" id="registerForm">
+        <div class="input-box">
+            <input type="text" placeholder="请输入账号">
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="请输入密码">
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="请确认密码">
+        </div>
+        <button class="btn">注册</button>
+    </div>
+</div>
+
+<script>
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+
+    loginTab.addEventListener('click', () => {
+        loginTab.classList.add('active');
+        registerTab.classList.remove('active');
+        loginForm.classList.add('active');
+        registerForm.classList.remove('active');
+    });
+
+    registerTab.addEventListener('click', () => {
+        registerTab.classList.add('active');
+        loginTab.classList.remove('active');
+        registerForm.classList.add('active');
+        loginForm.classList.remove('active');
+    });
+</script>
+
+</body>
+</html>

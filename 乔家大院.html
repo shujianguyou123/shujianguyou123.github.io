@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乔家大院 - 山西旅游</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .banner {
+            height: 280px;
+            background: url("乔家.jpg") center/cover no-repeat;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .banner h1 {
+            font-size: 56px;
+            color: #fff;
+            font-style: italic;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+            letter-spacing: 3px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin: 25px 0 15px;
+            border-left: 4px solid #ff6b35;
+            padding-left: 12px;
+        }
+
+        .main-img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 10px 0 20px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 2;
+            color: #444;
+            margin-bottom: 16px;
+            text-indent: 2em;
+        }
+
+        .ticket-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .ticket-table th, .ticket-table td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        .ticket-table th {
+            background-color: #ff6b35;
+            color: #fff;
+        }
+
+        .ticket-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .route-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 3px solid #ff6b35;
+        }
+
+        .route-box h3 {
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+
+        .route-box p {
+            text-indent: 0;
+            line-height: 1.8;
+            margin: 6px 0;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .highlight-item {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            transition: 0.3s;
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .highlight-item h4 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .highlight-item p {
+            margin: 0;
+            text-indent: 0;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 18px;
+            border-radius: 8px;
+            border-left: 3px solid #ff6b35;
+        }
+
+        .info-card h4 {
+            color: #ff6b35;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .info-card p {
+            color: #555;
+            margin: 0;
+            text-indent: 0;
+            line-height: 1.7;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .banner h1 {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h1></h1>
+    </div>
+
+    <div class="container">
+        <h2>景点概览</h2>
+        <p>乔家大院位于山西省晋中市祁县乔家堡村，是清代晋商巨贾乔氏家族的宅院，始建于清乾隆年间，历经多次扩建，形成了占地8700余平方米、拥有6座大院、20进小院、313间房屋的宏伟建筑群。因《大红灯笼高高挂》《乔家大院》等影视剧在此拍摄而闻名全国，被誉为“北方民居建筑史上一颗璀璨的明珠”。</p >
+        <p>大院布局工整、结构精巧，呈双“喜”字造型，高墙深院、青砖灰瓦，处处体现晋商家族的严谨家风与雄厚实力。院内木雕、砖雕、石雕、彩绘工艺精湛，寓意吉祥，是国家AAAAA级旅游景区、全国重点文物保护单位。</p >
+
+        <h2>🎫 门票价格（2026最新）</h2>
+        <table class="ticket-table">
+            <tr>
+                <th>票种</th>
+                <th>旺季（4.1-10.31）</th>
+                <th>淡季（11.1-次年3.31）</th>
+            </tr>
+            <tr>
+                <td>成人票</td>
+                <td>115元</td>
+                <td>90元</td>
+            </tr>
+            <tr>
+                <td>学生票</td>
+                <td>半价</td>
+                <td>半价</td>
+            </tr>
+            <tr>
+                <td>免票人群</td>
+                <td colspan="2">6周岁以下/1.2米以下、60周岁以上、现役军人、残疾人（凭证）</td>
+            </tr>
+        </table>
+
+        <h2>🚶‍♂️ 推荐游览路线</h2>
+        <div class="route-box">
+            <h3>✅ 经典精华路线（2-3小时）</h3>
+            <p>入口 → 牌楼 → 中堂 → 德兴堂 → 保元堂 → 宁守堂 → 花园 → 在中堂 → 出口</p >
+        </div>
+
+        <div class="route-box">
+            <h3>⭐ 必看亮点</h3>
+            <p>• 在中堂：乔家核心院落，《大红灯笼高高挂》主取景地</p >
+            <p>• 万人球：清代稀有宝物，可监视全院，堪称古代“监控”</p >
+            <p>• 犀牛望月镜：镇馆之宝，国家一级文物</p >
+            <p>• 九龙灯：慈禧太后赏赐，全国罕见</p >
+        </div>
+
+        <div class="route-box">
+            <h3>⚠️ 游览贴士</h3>
+            <p>• 院落对称有序，建议跟着讲解参观，了解背后故事</p >
+            <p>• 院内红灯笼为标志性景观，拍照非常出片</p >
+            <p>• 节假日游客较多，错峰游览体验更佳</p >
+        </div>
+
+        <h2>历史与晋商文化</h2>
+        <p>乔家大院是晋商文化的典型代表，乔氏家族以诚信立业、勤俭持家，创立了遍布全国的票号商号，成为清代商界传奇。大院建筑既体现了严格的封建礼制，又彰显了晋商“汇通天下”的气魄。</p >
+        <p>乔家历代恪守“诚信为本、勤俭持家、和为贵、善为先”的家训，不仅建筑宏伟，更留存大量珍贵文物，是研究清代晋商历史、民俗文化、建筑艺术的重要实物例证。</p >
+
+        <h2>核心看点</h2>
+        <div class="highlights">
+            <div class="highlight-item">
+                <h4>双喜布局</h4>
+                <p>整体院落呈双“喜”字形，六院相连，错落有致，气势庄严。</p >
+            </div>
+            <div class="highlight-item">
+                <h4>三大镇馆之宝</h4>
+                <p>犀牛望月镜、九龙灯、万人球，件件稀世罕见，极具历史价值。</p >
+            </div>
+            <div class="highlight-item">
+                <h4>三雕艺术</h4>
+                <p>木雕、砖雕、石雕精美绝伦，寓意吉祥，堪称民间艺术精品。</p >
+            </div>
+            <div class="highlight-item">
+                <h4>影视名片</h4>
+                <p>《大红灯笼高高挂》《乔家大院》等经典影视作品拍摄地，知名度极高。</p >
+            </div>
+        </div>
+
+        <h2>实用信息</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h4>开放时间</h4>
+                <p>旺季：8:00—18:00<br>淡季：8:30—17:30</p >
+            </div>
+            <div class="info-card">
+                <h4>景区等级</h4>
+                <p>国家AAAAA级景区<br>全国重点文物保护单位</p >
+            </div>
+            <div class="info-card">
+                <h4>建议时长</h4>
+                <p>精华游：2-3小时<br>深度游：3-4小时</p >
+            </div>
+            <div class="info-card">
+                <h4>交通指南</h4>
+                <p>距平遥古城约30公里<br>平遥、祁县均有直通车可达</p >
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 山西旅游 · 乔家大院专题页面
+    </footer>
+</body>
+</html>

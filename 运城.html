@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>运城市</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* 导航栏 */
+        .nav {
+            position: sticky;
+            top: 0;
+            background-color: #b72424;
+            padding: 14px 0;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 0 10px;
+        }
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 14px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+        .nav a:hover {
+            background-color: #fff;
+            color: #b72424;
+        }
+
+        /* 顶部横幅 */
+        .header-banner {
+            width: 100%;
+            height: 400px;
+            background-color: #eee;
+            position: relative;
+            overflow: hidden;
+        }
+        .header-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .header-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+        .header-title h1 {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        .header-title p {
+            font-size: 24px;
+        }
+
+        /* 主体内容 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* 县区模块 */
+        .district {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+            scroll-margin-top: 90px;
+        }
+        .district h2 {
+            font-size: 28px;
+            color: #b72424;
+            margin-bottom: 24px;
+            border-left: 6px solid #b72424;
+            padding-left: 14px;
+        }
+
+        /* 景点卡片 */
+        .spot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            background-color: #eee;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-right: 6px;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .badge-5a { background-color: #e63946; }
+        .badge-a { background-color: #457b9d; }
+        .badge-guo { background-color: #f4a261; }
+
+        .info {
+            margin: 10px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .ticket {
+            color: #c92a2a;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+        .near {
+            font-size: 13px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* 返回顶部按钮 */
+        #backTop {
+            position: fixed;
+            bottom: 40px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #b72424;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+        #backTop:hover {
+            background-color: #d32f2f;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #888;
+            font-size: 14px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="nav">
+        <div class="nav-container">
+            <a href="#yanhu">盐湖区</a>
+            <a href="#yongji">永济市</a>
+            <a href="#ruicheng">芮城县</a>
+            <a href="#wanrong">万荣县</a>
+            <a href="#xinjiang">新绛县</a>
+            <a href="#wenxi">闻喜县</a>
+            <a href="#xiaxian">夏县</a>
+            <a href="#hejin">河津市</a>
+        </div>
+    </div>
+
+    <!-- 顶部横幅 -->
+    <div class="header-banner">
+        <img src="运城.jpg" alt="运城旅游封面">
+        <div class="header-title">
+            <h1>运城市</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 盐湖区 -->
+        <section class="district" id="yanhu">
+            <h2>盐湖区</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="解州关帝庙.jpg" alt="解州关帝庙">
+                    <div class="card-body">
+                        <div class="card-name">解州关帝庙</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">关庙之祖、武庙之冠，中国规模最大、保存最完整的关帝庙宇。</div>
+                        <div class="ticket">门票：60元</div>
+                        <div class="near">附近景点：常平关帝家庙、关帝祖陵</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="运城盐湖.jpg" alt="运城盐湖">
+                    <div class="card-body">
+                        <div class="card-name">运城盐湖</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">中国死海，世界三大硫酸钠型内陆盐湖之一，康养漂浮胜地。</div>
+                        <div class="ticket">门票：按需消费</div>
+                        <div class="near">附近景点：池神庙、舜帝陵</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="舜帝陵.jpg" alt="舜帝陵">
+                    <div class="card-body">
+                        <div class="card-name">舜帝陵</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">华夏文明始祖圣地，德孝文化发源地。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：运城博物馆、池神庙</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 永济市 -->
+        <section class="district" id="yongji">
+            <h2>永济市</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="鹳雀楼.jpg" alt="鹳雀楼">
+                    <div class="card-body">
+                        <div class="card-name">鹳雀楼</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">中国四大名楼之一，因“欲穷千里目，更上一层楼”闻名天下。</div>
+                        <div class="ticket">门票：50元</div>
+                        <div class="near">附近景点：普救寺、蒲津渡遗址</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="普救寺.jpg" alt="普救寺">
+                    <div class="card-body">
+                        <div class="card-name">普救寺</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">《西厢记》故事发生地，莺莺塔为中国四大回音建筑之一。</div>
+                        <div class="ticket">门票：55元</div>
+                        <div class="near">附近景点：鹳雀楼、五老峰</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="五老峰.jpg" alt="五老峰">
+                    <div class="card-body">
+                        <div class="card-name">五老峰</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">北方道教名山，奇峰险峻，国家级风景名胜区。</div>
+                        <div class="ticket">门票：70元</div>
+                        <div class="near">附近景点：普救寺、神潭大峡谷</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="蒲津渡遗址.jpg" alt="蒲津渡遗址">
+                    <div class="card-body">
+                        <div class="card-name">蒲津渡遗址（黄河铁牛）</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">唐代渡口遗址，四尊铁牛为国家级国宝，气势恢宏。</div>
+                        <div class="ticket">门票：60元</div>
+                        <div class="near">附近景点：鹳雀楼、普救寺</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 芮城县 -->
+        <section class="district" id="ruicheng">
+            <h2>芮城县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="永乐宫.jpg" alt="永乐宫">
+                    <div class="card-body">
+                        <div class="card-name">永乐宫</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">元代道教三大祖庭之一，壁画《朝元图》为东方艺术画廊。</div>
+                        <div class="ticket">门票：50元</div>
+                        <div class="near">附近景点：广仁王庙、西侯度遗址</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="广仁王庙.jpg" alt="广仁王庙">
+                    <div class="card-body">
+                        <div class="card-name">广仁王庙</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">全国仅存四大唐代木构建筑之一，古朴大气。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：永乐宫、芮城城隍庙</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 万荣县 -->
+        <section class="district" id="wanrong">
+            <h2>万荣县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="后土祠.jpg" alt="后土祠">
+                    <div class="card-body">
+                        <div class="card-name">后土祠</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">中华祖祠，汉武帝祭祀后土之地，秋风楼藏《秋风辞》碑刻。</div>
+                        <div class="ticket">门票：20元</div>
+                        <div class="near">附近景点：飞云楼、李家大院</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="飞云楼.jpg" alt="飞云楼">
+                    <div class="card-body">
+                        <div class="card-name">飞云楼</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">中华第一木楼，纯木结构无铁钉，明代建筑瑰宝。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：万荣东岳庙、后土祠</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 新绛县 -->
+        <section class="district" id="xinjiang">
+            <h2>新绛县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="绛州大堂.jpg" alt="绛州大堂">
+                    <div class="card-body">
+                        <div class="card-name">绛州大堂</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">元代州府大堂，全国罕见古代衙署建筑。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：绛州钟楼、乐楼</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 闻喜县 -->
+        <section class="district" id="wenxi">
+            <h2>闻喜县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="裴柏村.jpg" alt="裴柏村">
+                    <div class="card-body">
+                        <div class="card-name">裴柏村（中华宰相村）</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">天下第一村，历史出59位宰相、59位大将军。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：裴氏祠堂、中华宰相村博物馆</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 夏县 -->
+        <section class="district" id="xiaxian">
+            <h2>夏县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="司马光祠.jpg" alt="司马光祠">
+                    <div class="card-body">
+                        <div class="card-name">司马光祠</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">北宋名相司马光墓园，古建筑与碑刻保存完好。</div>
+                        <div class="ticket">门票：20元</div>
+                        <div class="near">附近景点：堆云洞、夏县温泉</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 河津市 -->
+        <section class="district" id="hejin">
+            <h2>河津市</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="禹门口.jpg" alt="禹门口">
+                    <div class="card-body">
+                        <div class="card-name">禹门口（黄河龙门）</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">大禹治水遗迹，黄河晋陕大峡谷最窄处，气势磅礴。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：真武庙、高禖庙</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- 返回顶部按钮 -->
+    <button id="backTop">↑</button>
+
+    <footer>
+        关公故里 · 华夏根脉 · 古中国 · 大运城
+    </footer>
+
+    <script>
+        // 返回顶部
+        const backTopBtn = document.getElementById('backTop');
+        window.addEventListener('scroll', function(){
+            backTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+        backTopBtn.addEventListener('click', function(){
+            window.scrollTo({top:0, behavior:'smooth'});
+        });
+    </script>
+</body>
+</html>

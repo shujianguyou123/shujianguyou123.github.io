@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山西文创产品展示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f7f3ee;
+            padding-bottom: 70px;
+        }
+        header {
+            background-color: #a82a24;
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+        .container {
+            width: 92%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .select-box {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        select {
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            min-width: 260px;
+        }
+        .city-box {
+            display: none;
+            margin-bottom: 40px;
+        }
+        .city-box.active {
+            display: block;
+        }
+        .city-title {
+            font-size: 26px;
+            color: #a82a24;
+            border-left: 6px solid #a82a24;
+            padding-left: 16px;
+            margin-bottom: 25px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 28px;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+        }
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #eee;
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-info h3 {
+            font-size: 18px;
+            color: #a82a24;
+            margin-bottom: 10px;
+        }
+        .product-info p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #a82a24;
+            color: #fff;
+            text-align: center;
+            padding: 16px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>三晋文创 · 城市好物集</h1>
+    <p>山西省11市真实文创产品展示</p>
+</header>
+
+<div class="container">
+    <div class="select-box">
+        <select id="citySelect">
+            <option value="none">-- 请选择城市 --</option>
+            <option value="taiyuan">太原</option>
+            <option value="datong">大同</option>
+            <option value="yangquan">阳泉</option>
+            <option value="changzhi">长治</option>
+            <option value="jincheng">晋城</option>
+            <option value="shuozhou">朔州</option>
+            <option value="jinzhong">晋中</option>
+            <option value="yuncheng">运城</option>
+            <option value="xinzhou">忻州</option>
+            <option value="linfen">临汾</option>
+            <option value="lvliang">吕梁</option>
+        </select>
+    </div>
+
+    <!-- 太原 -->
+    <div class="city-box" id="taiyuan">
+        <h2 class="city-title">太原 · 晋祠 & 山西博物院文创</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005151_266_2.jpg">
+                <div class="product-info">
+                    <h3>晋祠侍女像金属书签</h3>
+                    <p>以晋祠圣母殿宋代侍女立像为设计原型，采用镂空蚀刻工艺制作，是山西博物院与晋祠景区联合推出的经典文化文创，兼具艺术价值与实用性。</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005152_267_2.jpg">
+                <div class="product-info">
+                    <h3>晋候鸟尊冰箱贴</h3>
+                    <p>源自山西博物院镇馆之宝晋候鸟尊，采用立体浮雕工艺还原青铜器纹饰，是山西博物院官方热销文创产品。</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005152_268_2.jpg">
+                <div class="product-info">
+                    <h3>太原双塔帆布包</h3>
+                    <p>以太原永祚寺双塔为核心图案，简约印花设计，面料耐磨透气，为太原市文旅官方授权城市纪念文创。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 大同 -->
+    <div class="city-box" id="datong">
+        <h2 class="city-title">大同 · 云冈石窟 & 华严寺文创</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005153_269_2.jpg">
+                <div class="product-info">
+                    <h3>云冈大佛钥匙扣</h3>
+                    <p>以云冈石窟第20窟露天大佛为原型，采用合金压铸工艺，造型庄重精致，是云冈石窟景区官方正版文创。</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005154_270_2.jpg">
+                <div class="product-info">
+                    <h3>云冈石窟浮雕冰箱贴</h3>
+                    <p>立体复刻石窟造像与壁画细节，色彩沉稳，质感厚重，为云冈石窟景区畅销纪念文创。</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005155_271_2.jpg">
+                <div class="product-info">
+                    <h3>合掌露齿菩萨书签</h3>
+                    <p>取材于华严寺辽代经典造像“东方维纳斯”，线条流畅，工艺精细，为大同市文旅官方文创产品。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 阳泉 -->
+    <div class="city-box" id="yangquan">
+        <h2 class="city-title">阳泉 · 娘子关 & 藏山文创</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005157_273_2.jpg">
+                <div class="product-info">
+                    <h3>娘子关长城冰箱贴</h3>
+                    <p>以万里长城第九关娘子关为原型，还原关隘与山水风貌，是娘子关景区官方旅游纪念文创。</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005156_272_2.jpg">
+                <div class="product-info">
+                    <h3>藏山忠义文化冰箱贴</h3>
+                    <p>结合藏山赵氏孤儿历史典故设计，金属烤漆工艺，小巧精致，为景区正版文旅周边。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 长治 -->
+    <div class="city-box" id="changzhi">
+        <h2 class="city-title">长治 · 太行山大峡谷 & 上党文化文创</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005157_274_2.jpg">
+                <div class="product-info">
+                    <h3>太行山大峡谷冰箱贴</h3>
+                    <p>展现太行峡谷雄奇自然风光，采用渐变色彩与立体造型，为太行山大峡谷景区官方文创。</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005158_275_2.jpg">
+                <div class="product-info">
+                    <h3>上党梆子戏曲书签</h3>
+                    <p>以山西非物质文化遗产上党梆子为主题，提取经典角色形象，兼具地方戏曲特色与实用功能。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 晋城 -->
+    <div class="city-box" id="jincheng">
+        <h2 class="city-title">晋城 · 皇城相府文创</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005159_276_2.jpg">
+                <div class="product-info">
+                    <h3>皇城相府建筑冰箱贴</h3>
+                    <p>复刻皇城相府城堡式官宅建筑风貌，细节写实，为皇城相府景区官方正版文创。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 朔州 -->
+    <div class="city-box" id="shuozhou">
+        <h2 class="city-title">朔州 · 应县木塔文创</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005200_277_2.jpg">
+                <div class="product-info">
+                    <h3>应县木塔立体冰箱贴</h3>
+                    <p>按比例还原应县佛宫寺释迦塔结构造型，多层楼阁细节清晰，为木塔景区官方文创。</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005201_278_2.jpg">
+                <div class="product-info">
+                    <h3>应县木塔拼装模型</h3>
+                    <p>基于木塔真实斗拱结构设计的拼装模型，可动手组装，兼具科普与收藏价值。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 晋中 -->
+    <div class="city-box" id="jinzhong">
+        <h2 class="city-title">晋中 · 平遥古城 & 晋商文创</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005202_279_2.jpg">
+                <div class="product-info">
+                    <h3>平遥票号复古笔记本</h3>
+                    <p>融入日昇昌票号、镖局、算盘等晋商元素，内页设计复古，为平遥古城官方文创。</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005203_280_2.jpg">
+                <div class="product-info">
+                    <h3>平遥古城墙冰箱贴</h3>
+                    <p>还原古城墙城楼与街巷轮廓，造型写实，为平遥古城景区热销纪念文创。</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005203_281_2.jpg">
+                <div class="product-info">
+                    <h3>乔家大院建筑书签</h3>
+                    <p>以晋商大院建筑为设计元素，金属镂空工艺，体现晋中民居建筑文化特色。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 运城 -->
+    <div class="city-box" id="yuncheng">
+        <h2 class="city-title">运城 · 关帝庙 & 鹳雀楼文创</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005204_282_2.jpg">
+                <div class="product-info">
+                    <h3>关公忠义摆件</h3>
+                    <p>以解州关帝庙武圣关公形象为原型，突出忠义文化精神，为运城官方文旅文创。</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005205_283_2.jpg">
+                <div class="product-info">
+                    <h3>鹳雀楼风景冰箱贴</h3>
+                    <p>结合“欲穷千里目”诗词意境与楼阁实景设计，为永济鹳雀楼景区官方文创。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 忻州 -->
+    <div class="city-box" id="xinzhou">
+        <h2 class="city-title">忻州 · 五台山 & 雁门关文创</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005206_284_2.jpg">
+                <div class="product-info">
+                    <h3>文殊菩萨冰箱贴</h3>
+                    <p>以五台山文殊菩萨造像为设计核心，造型温润庄严，为五台山景区官方文创。</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005206_285_2.jpg">
+                <div class="product-info">
+                    <h3>雁门关金属书签</h3>
+                    <p>以九塞尊崇第一关雁门关为原型，展现边塞雄关风貌，具有浓厚历史文化气息。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 临汾 -->
+    <div class="city-box" id="linfen">
+        <h2 class="city-title">临汾 · 壶口瀑布 & 尧都文创</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005207_286_2.jpg">
+                <div class="product-info">
+                    <h3>壶口瀑布冰箱贴</h3>
+                    <p>还原黄河壶口瀑布奔腾气势，色彩鲜明，立体感强，为壶口景区官方文创。</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005208_287_2.jpg">
+                <div class="product-info">
+                    <h3>尧都文化纪念徽章</h3>
+                    <p>以尧帝文化与华夏文明起源为主题设计，金属质感，为临汾市文旅纪念文创。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 吕梁 -->
+    <div class="city-box" id="lvliang">
+        <h2 class="city-title">吕梁 · 碛口古镇文创</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005209_288_2.jpg">
+                <div class="product-info">
+                    <h3>碛口古镇冰箱贴</h3>
+                    <p>展现黄河古镇码头风貌，还原古建筑与黄河风情，为碛口古镇景区官方文创。</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img class="product-img" src="微信图片_20260406005210_289_2.jpg">
+                <div class="product-info">
+                    <h3>黄河风情帆布包</h3>
+                    <p>以黄土高原与黄河文化为主题，简约大气，实用耐用，为吕梁特色城市文创。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>三晋文创 · 传承山西历史文化</footer>
+
+<script>
+    const citySelect = document.getElementById('citySelect');
+    const cityBoxes = document.querySelectorAll('.city-box');
+
+    citySelect.addEventListener('change', function () {
+        cityBoxes.forEach(box => box.classList.remove('active'));
+        const val = this.value;
+        if (val !== 'none') {
+            document.getElementById(val).classList.add('active');
+        }
+    });
+</script>

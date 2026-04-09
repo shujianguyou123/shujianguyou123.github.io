@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>临汾市</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* 导航栏 */
+        .nav {
+            position: sticky;
+            top: 0;
+            background-color: #b72424;
+            padding: 14px 0;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 0 10px;
+        }
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 14px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+        .nav a:hover {
+            background-color: #fff;
+            color: #b72424;
+        }
+
+        /* 顶部横幅 */
+        .header-banner {
+            width: 100%;
+            height: 400px;
+            background-color: #eee;
+            position: relative;
+            overflow: hidden;
+        }
+        .header-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .header-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+        .header-title h1 {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        .header-title p {
+            font-size: 24px;
+        }
+
+        /* 主体内容 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* 县区模块 */
+        .district {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+            scroll-margin-top: 90px;
+        }
+        .district h2 {
+            font-size: 28px;
+            color: #b72424;
+            margin-bottom: 24px;
+            border-left: 6px solid #b72424;
+            padding-left: 14px;
+        }
+
+        /* 景点卡片 */
+        .spot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            background-color: #eee;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-right: 6px;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .badge-5a { background-color: #e63946; }
+        .badge-a { background-color: #457b9d; }
+        .badge-guo { background-color: #f4a261; }
+
+        .info {
+            margin: 10px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .ticket {
+            color: #c92a2a;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+        .near {
+            font-size: 13px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* 返回顶部按钮 */
+        #backTop {
+            position: fixed;
+            bottom: 40px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #b72424;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+        #backTop:hover {
+            background-color: #d32f2f;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #888;
+            font-size: 14px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="nav">
+        <div class="nav-container">
+            <a href="#yaodu">尧都区</a>
+            <a href="#hongtong">洪洞县</a>
+            <a href="#xiangning">乡宁县</a>
+            <a href="#jixian">吉县</a>
+            <a href="#xixian">隰县</a>
+            <a href="#xiangfen">襄汾县</a>
+            <a href="#huozhou">霍州市</a>
+        </div>
+    </div>
+
+    <!-- 顶部横幅 -->
+    <div class="header-banner">
+        <img src="临汾.jpg" alt="临汾旅游封面">
+        <div class="header-title">
+            <h1>临汾市</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 尧都区 -->
+        <section class="district" id="yaodu">
+            <h2>尧都区</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="华门.jpg" alt="华门">
+                    <div class="card-body">
+                        <div class="card-name">华门</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">天下第一门，华夏文明标志性建筑，象征尧帝开启中华文明之门。</div>
+                        <div class="ticket">门票：50元</div>
+                        <div class="near">附近景点：尧庙、尧帝陵</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="尧庙.jpg" alt="尧庙">
+                    <div class="card-body">
+                        <div class="card-name">尧庙</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">祭祀尧、舜、禹三圣帝的庙宇，华夏文明重要发祥地。</div>
+                        <div class="ticket">门票：40元</div>
+                        <div class="near">附近景点：华门、尧帝陵</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 洪洞县 -->
+        <section class="district" id="hongtong">
+            <h2>洪洞县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="洪洞大槐树.jpg" alt="洪洞大槐树寻根祭祖园景区">
+                    <div class="card-body">
+                        <div class="card-name">洪洞大槐树寻根祭祖园景区</div>
+                        <span class="badge badge-5a">5A景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">全国唯一以“寻根”“祭祖”为主题的5A景区，明代大移民圣地，华人老家。</div>
+                        <div class="ticket">门票：80元</div>
+                        <div class="near">附近景点：广胜寺、苏三监狱</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="广胜寺.jpg" alt="广胜寺">
+                    <div class="card-body">
+                        <div class="card-name">广胜寺</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">始建于东汉，飞虹塔为中国现存最高最古琉璃塔，《赵城金藏》珍藏地。</div>
+                        <div class="ticket">门票：55元</div>
+                        <div class="near">附近景点：洪洞大槐树、水神庙</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 乡宁县 -->
+        <section class="district" id="xiangning">
+            <h2>乡宁县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="云丘山.jpg" alt="乡宁县云丘山景区">
+                    <div class="card-body">
+                        <div class="card-name">乡宁县云丘山景区</div>
+                        <span class="badge badge-5a">5A景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">河汾第一名胜，喀斯特地貌、千年古村、万年冰洞群，道教圣地。</div>
+                        <div class="ticket">门票：80元</div>
+                        <div class="near">附近景点：塔尔坡古村、玉皇顶</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 吉县 -->
+        <section class="district" id="jixian">
+            <h2>吉县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="壶口瀑布.jpg" alt="黄河壶口瀑布旅游区">
+                    <div class="card-body">
+                        <div class="card-name">黄河壶口瀑布旅游区</div>
+                        <span class="badge badge-5a">5A景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">中国第二大瀑布，世界最大黄色瀑布，黄河精神象征，气势磅礴。</div>
+                        <div class="ticket">门票：90元</div>
+                        <div class="near">附近景点：克难城、挂甲山摩崖造像</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 隰县 -->
+        <section class="district" id="xixian">
+            <h2>隰县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="小西天.jpg" alt="小西天">
+                    <div class="card-body">
+                        <div class="card-name">小西天</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">明代悬塑艺术瑰宝，千佛庵悬塑被誉为“悬塑绝唱”，佛教艺术珍品。</div>
+                        <div class="ticket">门票：30元</div>
+                        <div class="near">附近景点：七里脚千佛洞石窟</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 襄汾县 -->
+        <section class="district" id="xiangfen">
+            <h2>襄汾县</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="丁村遗址.jpg" alt="丁村遗址">
+                    <div class="card-body">
+                        <div class="card-name">丁村遗址</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">旧石器时代中期重要遗址，出土大量古人类化石与石器。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：丁村民宅、陶寺遗址</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="陶寺遗址.jpg" alt="陶寺遗址">
+                    <div class="card-body">
+                        <div class="card-name">陶寺遗址</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">尧帝都城遗址，最早“中国”所在地，中华文明探源工程核心遗址。</div>
+                        <div class="ticket">门票：免费</div>
+                        <div class="near">附近景点：丁村遗址、晋国博物馆</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="晋国博物馆.jpg" alt="晋国博物馆">
+                    <div class="card-body">
+                        <div class="card-name">晋国博物馆</div>
+                        <span class="badge badge-a">A级景区</span>
+                        <div class="info">全国唯一完整展示晋文化的专题博物馆，晋国古墓原址展示。</div>
+                        <div class="ticket">门票：50元</div>
+                        <div class="near">附近景点：陶寺遗址、丁村遗址</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 霍州市 -->
+        <section class="district" id="huozhou">
+            <h2>霍州市</h2>
+            <div class="spot-grid">
+                <div class="card">
+                    <img class="card-img" src="霍州署.jpg" alt="霍州署">
+                    <div class="card-body">
+                        <div class="card-name">霍州署</div>
+                        <span class="badge badge-guo">国保单位</span>
+                        <div class="info">全国现存唯一完整的元代州级衙署，与故宫、保定直隶总督府齐名。</div>
+                        <div class="ticket">门票：40元</div>
+                        <div class="near">附近景点：娲皇庙、霍州鼓楼</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- 返回顶部按钮 -->
+    <button id="backTop">↑</button>
+
+    <footer>
+        华夏之根 · 黄河之魂 · 根祖圣地 · 表里山河
+    </footer>
+
+    <script>
+        // 返回顶部
+        const backTopBtn = document.getElementById('backTop');
+        window.addEventListener('scroll', function(){
+            backTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+        backTopBtn.addEventListener('click', function(){
+            window.scrollTo({top:0, behavior:'smooth'});
+        });
+    </script>
+</body>
+</html>

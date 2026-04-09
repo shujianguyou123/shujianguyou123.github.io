@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>晋城市</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:"Microsoft YaHei",sans-serif;
+    }
+    body{
+      background:#f5f5f5;
+      color:#333;
+    }
+
+    /* 顶部导航菜单 */
+    .nav{
+      position:sticky;
+      top:0;
+      background:#b72424;
+      padding:14px 0;
+      z-index:999;
+      box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    }
+    .nav-container{
+      max-width:1200px;
+      margin:0 auto;
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:10px;
+      padding:0 10px;
+    }
+    .nav a{
+      color:#fff;
+      text-decoration:none;
+      padding:8px 14px;
+      background:rgba(255,255,255,0.15);
+      border-radius:6px;
+      font-size:15px;
+      transition:0.2s;
+    }
+    .nav a:hover{
+      background:#fff;
+      color:#b72424;
+    }
+
+    /* 顶部标题栏 */
+    .header-banner{
+      width:100%;
+      height:400px;
+      background:#eee;
+      position:relative;
+      overflow:hidden;
+    }
+    .header-banner img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .header-title{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      color:#fff;
+      text-align:center;
+      text-shadow:0 0 15px rgba(0,0,0,0.7);
+    }
+    .header-title h1{
+      font-size:60px;
+      margin-bottom:15px;
+    }
+    .header-title p{
+      font-size:24px;
+    }
+
+    .container{
+      max-width:1200px;
+      margin:0 auto;
+      padding:40px 20px;
+    }
+
+    /* 县区模块 */
+    .district{
+      background:#fff;
+      border-radius:12px;
+      padding:30px;
+      margin-bottom:30px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.06);
+      scroll-margin-top:90px;
+    }
+    .district h2{
+      font-size:28px;
+      color:#b72424;
+      margin-bottom:24px;
+      border-left:6px solid #b72424;
+      padding-left:14px;
+    }
+
+    /* 景点卡片 */
+    .spot-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+      gap:24px;
+    }
+    .card{
+      border-radius:10px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow:0 1px 6px rgba(0,0,0,0.08);
+      transition:0.3s;
+    }
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    }
+    .card-img{
+      width:100%;
+      height:240px;
+      object-fit:cover;
+      background:#eee;
+    }
+    .card-body{
+      padding:20px;
+    }
+    .card-name{
+      font-size:20px;
+      font-weight:bold;
+      margin-bottom:10px;
+    }
+    .badge{
+      display:inline-block;
+      padding:4px 10px;
+      border-radius:4px;
+      font-size:13px;
+      margin-right:6px;
+      margin-bottom:8px;
+      color:#fff;
+    }
+    .badge-5a{background:#e63946}
+    .badge-a{background:#457b9d}
+    .badge-guo{background:#f4a261}
+
+    .info{
+      margin:10px 0;
+      font-size:14px;
+      line-height:1.6;
+    }
+    .ticket{
+      color:#c92a2a;
+      font-weight:bold;
+      margin:8px 0;
+    }
+    .near{
+      font-size:13px;
+      color:#666;
+      margin-top:10px;
+    }
+
+    /* 返回顶部按钮 */
+    #backTop{
+      position:fixed;
+      bottom:40px;
+      right:30px;
+      width:50px;
+      height:50px;
+      background:#b72424;
+      color:#fff;
+      border:none;
+      border-radius:50%;
+      font-size:18px;
+      cursor:pointer;
+      display:none;
+      justify-content:center;
+      align-items:center;
+      box-shadow:0 2px 10px rgba(0,0,0,0.2);
+      z-index:999;
+    }
+    #backTop:hover{
+      background:#d32f2f;
+    }
+
+    footer{
+      text-align:center;
+      padding:40px 20px;
+      color:#888;
+      font-size:14px;
+      background:#fff;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 顶部导航菜单 -->
+<div class="nav">
+  <div class="nav-container">
+    <a href=" ">城区</a >
+    <a href="#zezhou">泽州县</a >
+    <a href="#gaoping">高平市</a >
+    <a href="#yangcheng">阳城县</a >
+    <a href="#qinxian">沁水县</a >
+    <a href="#lingchuan">陵川县</a >
+  </div>
+</div>
+
+<!-- 顶部标题栏 -->
+<div class="header-banner">
+  <img src="晋城.jpg" alt="晋城旅游封面">
+  <div class="header-title">
+    <h1>晋城市</h1>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 城区 -->
+  <section class="district" id="chengqu">
+    <h2>城区</h2>
+    <div class="spot-grid">
+      <div class="card">
+        <img class="card-img" src="司徒小镇.jpg" alt="司徒小镇">
+        <div class="card-body">
+          <div class="card-name">司徒小镇</div>
+          <span class="badge badge-a">A级景区</span>
+          <div class="info">千年铁魂打铁花，民俗文化体验地，晋城网红打卡地。</div>
+          <div class="ticket">门票：免费（打铁花另收费）</div>
+          <div class="near">附近景点：吴王山森林公园、泽州公园</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="青莲寺.jpg" alt="青莲寺">
+        <div class="card-body">
+          <div class="card-name">青莲寺</div>
+          <span class="badge badge-guo">国保单位</span>
+          <div class="info">净土宗古刹，唐代古建，古柏参天，依山傍水。</div>
+          <div class="ticket">门票：30元</div>
+          <div class="near">附近景点：珏山、玉皇庙</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 泽州县 -->
+  <section class="district" id="zezhou">
+    <h2>泽州县</h2>
+    <div class="spot-grid">
+      <div class="card">
+        <img class="card-img" src="湘峪古堡.jpg" alt="湘峪古堡">
+        <div class="card-body">
+          <div class="card-name">湘峪古堡</div>
+          <span class="badge badge-guo">国保单位</span>
+          <div class="info">明代蜂窝式古堡，沁河古堡群代表，防御体系完整。</div>
+          <div class="ticket">门票：60元</div>
+          <div class="near">附近景点：皇城相府、郭峪古城</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="郭峪古城.jpg" alt="郭峪古城">
+        <div class="card-body">
+          <div class="card-name">郭峪古城</div>
+          <span class="badge badge-a">A级景区</span>
+          <span class="badge badge-guo">国保单位</span>
+          <div class="info">千年古堡，明清民居完整，夜景灯光秀极具特色。</div>
+          <div class="ticket">门票：40元</div>
+          <div class="near">附近景点：皇城相府、海会书院</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="皇城相府.jpg" alt="皇城相府">
+        <div class="card-body">
+          <div class="card-name">皇城相府</div>
+          <span class="badge badge-5a">5A景区</span>
+          <span class="badge badge-guo">国保单位</span>
+          <div class="info">康熙帝师陈廷敬故居，中国北方第一文化巨族之宅。</div>
+          <div class="ticket">门票：120元</div>
+          <div class="near">附近景点：郭峪古城、海会书院、九女仙湖</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 高平市 -->
+  <section class="district" id="gaoping">
+    <h2>高平市</h2>
+    <div class="spot-grid">
+      <div class="card">
+        <img class="card-img" src="羊头山炎帝文化旅游区.jpg" alt="羊头山炎帝文化旅游区">
+        <div class="card-body">
+          <div class="card-name">羊头山炎帝文化旅游区</div>
+          <span class="badge badge-a">A级景区</span>
+          <div class="info">华夏始祖炎帝故里，神农城、炎帝陵、神农泉等古迹。</div>
+          <div class="ticket">门票：50元</div>
+          <div class="near">附近景点：开化寺、定林寺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="开化寺.jpg" alt="开化寺">
+        <div class="card-body">
+          <div class="card-name">开化寺</div>
+          <span class="badge badge-guo">国保单位</span>
+          <div class="info">宋代壁画精品，建筑古朴，艺术价值极高。</div>
+          <div class="ticket">门票：免费</div>
+          <div class="near">附近景点：羊头山、定林寺</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 阳城县 -->
+  <section class="district" id="yangcheng">
+    <h2>阳城县</h2>
+    <div class="spot-grid">
+      <div class="card">
+        <img class="card-img" src="九女仙湖.jpg" alt="九女仙湖">
+        <div class="card-body">
+          <div class="card-name">九女仙湖</div>
+          <span class="badge badge-a">A级景区</span>
+          <div class="info">高峡平湖，太行漓江，乘船游览，山水如画。</div>
+          <div class="ticket">门票：68元（含船票）</div>
+          <div class="near">附近景点：皇城相府、郭峪古城</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="海会书院.jpg" alt="海会书院">
+        <div class="card-body">
+          <div class="card-name">海会书院</div>
+          <span class="badge badge-guo">国保单位</span>
+          <div class="info">千年书院，唐代琉璃双塔，明清进士摇篮。</div>
+          <div class="ticket">门票：40元</div>
+          <div class="near">附近景点：皇城相府、郭峪古城</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 沁水县 -->
+  <section class="district" id="qinxian">
+    <h2>沁水县</h2>
+    <div class="spot-grid">
+      <div class="card">
+        <img class="card-img" src="沁水历山国家森林公园.jpg" alt="沁水历山国家森林公园">
+        <div class="card-body">
+          <div class="card-name">沁水历山国家森林公园</div>
+          <span class="badge badge-a">A级景区</span>
+          <div class="info">舜耕历山，华北绿肺，高山草甸、原始森林。</div>
+          <div class="ticket">门票：60元</div>
+          <div class="near">附近景点：娥皇谷、舜王坪</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="柳氏民居.jpg" alt="柳氏民居">
+        <div class="card-body">
+          <div class="card-name">柳氏民居</div>
+          <span class="badge badge-guo">国保单位</span>
+          <div class="info">柳宗元后裔故居，明清官宦府邸，木雕精美。</div>
+          <div class="ticket">门票：40元</div>
+          <div class="near">附近景点：湘峪古堡、郭壁村</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 陵川县 -->
+  <section class="district" id="lingchuan">
+    <h2>陵川县</h2>
+    <div class="spot-grid">
+      <div class="card">
+        <img class="card-img" src="王莽岭.jpg" alt="王莽岭">
+        <div class="card-body">
+          <div class="card-name">王莽岭</div>
+          <span class="badge badge-a">A级景区</span>
+          <div class="info">太行山脉最高峰，云海日出、绝壁峡谷。</div>
+          <div class="ticket">门票：70元</div>
+          <div class="near">附近景点：锡崖沟、昆山挂壁公路</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="武家湾景区.jpg" alt="武家湾景区">
+        <div class="card-body">
+          <div class="card-name">武家湾景区</div>
+          <span class="badge badge-a">A级景区</span>
+          <div class="info">太行小江南，山水相依，避暑戏水胜地。</div>
+          <div class="ticket">门票：免费</div>
+          <div class="near">附近景点：红豆杉大峡谷、双底村</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- 返回顶部按钮 -->
+<button id="backTop">↑</button>
+
+<footer>
+  晋善晋美 · 华夏之根 · 太行古堡 · 山水晋城
+</footer>
+
+<script>
+  // 返回顶部
+  const backTopBtn = document.getElementById('backTop');
+  window.addEventListener('scroll', function(){
+    backTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+  });
+  backTopBtn.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+</script>
+
+</body>
+</html>
