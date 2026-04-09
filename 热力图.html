@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>山西省各市国保单位热力图</title>
+    <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script type="text/javascript" src="https://geo.datav.aliyun.com/areas_v3/bound/140000_full.json"></script>
+</head>
+<body>
+    <div id="heatmap_shanxi" class="chart-container" style="width:1200px; height:800px;"></div>
+    <script>
+        var chart = echarts.init(
+            document.getElementById('heatmap_shanxi'), 
+            'white', 
+            {renderer: 'canvas', locale: 'ZH'}
+        );
+
+        var option = {
+            title: [
+                {
+                    show: true,
+                    text: '热力图',
+                    left: 'center',
+                    top: 10,
+                    textStyle: {
+                        fontSize: 20,
+                        fontWeight: 'bold',
+                        color: '#333'
+                    },
+                    subtextStyle: {
+                        fontSize: 12,
+                        color: '#666'
+                    }
+                }
+            ],
+            tooltip: {
+                show: true,
+                trigger: 'item',
+                triggerOn: 'mousemove',
+                formatter: function(params) {
+                    return `<div style="padding:5px;">
+                        <strong>${params.name}</strong><br/>
+                        国保单位数量：<span style="color:#B30000;font-weight:bold;">${params.value}</span> 处<br/>
+                        热度：<span style="color:#D6604D;">${getHeatLevel(params.value)}</span>
+                    </div>`;
+                },
+                backgroundColor: 'rgba(255,255,255,0.9)',
+                borderColor: '#ddd',
+                borderWidth: 1,
+                borderRadius: 6,
+                textStyle: {
+                    fontSize: 14
+                }
+            },
+            visualMap: {
+                show: true,
+                type: 'continuous',
+                min: 0,
+                max: 110,
+                left: 'right',
+                top: 'center',
+                inRange: {
+                    color: ['#FFFFE0', '#FFD700', '#FF8C00', '#FF4500', '#DC143C', '#8B0000']
+                },
+                calculable: true,
+                hoverLink: true,
+                text: ['高热度', '低热度'],
+                textStyle: {
+                    fontSize: 12,
+                    color: '#333'
+                },
+                itemWidth: 20,
+                itemHeight: 150
+            },
+            series: [
+                {
+                    type: 'map',
+                    name: '国保单位数量',
+                    map: '山西',
+                    roam: true,
+                    zoom: 1.2,
+                    aspectScale: 0.8,
+                    label: {
+                        show: true,
+                        fontSize: 11,
+                        color: '#333',
+                        fontWeight: '500',
+                        formatter: '{b}\n{c}处'
+                    },
+                    emphasis: {
+                        label: {
+                            color: '#fff',
+                            fontSize: 12,
+                            fontWeight: 'bold'
+                        },
+                        itemStyle: {
+                            areaColor: '#FF6347',
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        }
+                    },
+                    // 【核心修复】正确数据，名称完全匹配地图
+                    data: [
+                        {"name": "运城市", "value": 103},
+                        {"name": "长治市", "value": 74},
+                        {"name": "晋城市", "value": 72},
+                        {"name": "晋中市", "value": 70},
+                        {"name": "临汾市", "value": 54},
+                        {"name": "吕梁市", "value": 39},
+                        {"name": "太原市", "value": 38},
+                        {"name": "忻州市", "value": 36},
+                        {"name": "大同市", "value": 32},
+                        {"name": "阳泉市", "value": 11},
+                        {"name": "朔州市", "value": 8}
+                    ]
+                }
+            ]
+        };
+
+        function getHeatLevel(value) {
+            if (value >= 80) return '极高';
+            else if (value >= 60) return '高';
+            else if (value >= 40) return '中高';
+            else if (value >= 20) return '中等';
+            else if (value >= 10) return '低';
+            else return '极低';
+        }
+
+        // 【核心修复】加载地图后注册+渲染
+        fetch('https://geo.datav.aliyun.com/areas_v3/bound/140000_full.json')
+            .then(res => res.json())
+            .then(geoJson => {
+                echarts.registerMap('山西', geoJson);
+                chart.setOption(option);
+            });
+
+        window.addEventListener('resize', function() {
+            chart.resize();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,466 @@
+<!-- 山西省国保单位 可视化大屏（修复版：地图+名录正常显示） -->
+<style>
+#heritage-dashboard {
+    width: 100%;
+    background: #0f172a;
+    color: #e0f2fe;
+    padding: 30px 15px;
+    box-sizing: border-box;
+    font-family: "Microsoft YaHei", sans-serif;
+    margin-top: 40px;
+    border-top: 2px solid #38bdf8;
+}
+.dash-title {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 24px;
+    color: #7dd3fc;
+    font-weight: bold;
+}
+.dash-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+.dash-card {
+    background: #1e293b;
+    border-radius: 10px;
+    padding: 18px;
+    border: 1px solid #334155;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.card-title {
+    font-size: 17px;
+    margin-bottom: 14px;
+    color: #bae6fd;
+    font-weight: 500;
+}
+.chart-box {
+    width: 100%;
+    height: 300px;
+}
+.map-box {
+    width: 100%;
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.list-box {
+    height: 400px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.8;
+    padding: 0 5px;
+}
+.list-box::-webkit-scrollbar { 
+    width: 6px; 
+    background: #1e293b;
+}
+.list-box::-webkit-scrollbar-thumb { 
+    background: #38bdf8; 
+    border-radius: 5px;
+}
+.list-item {
+    padding: 8px 0;
+    border-bottom: 1px dashed #334155;
+    color: #e0f2fe;
+}
+/* 新增热力图容器样式，保持和其他卡片一致 */
+.heatmap-box {
+    width: 100%;
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+/* 响应式适配 */
+@media (max-width: 1024px) {
+    .dash-grid { grid-template-columns: repeat(2, 1fr); }
+    .map-card { grid-column: span 2; }
+    .heatmap-card { grid-column: span 2; }
+}
+@media (max-width: 768px) {
+    .dash-grid { grid-template-columns: 1fr; }
+    .map-card { grid-column: span 1; }
+    .heatmap-card { grid-column: span 1; }
+}
+</style>
+
+<div id="heritage-dashboard">
+    <div class="dash-title">山西省全国重点文物保护单位 · 全景可视化大屏</div>
+    <div class="dash-grid">
+
+        <!-- 第一排 左：柱状图 -->
+        <div class="dash-card">
+            <div class="card-title">各市国保单位数量统计</div>
+            <div id="chart-city" class="chart-box"></div>
+        </div>
+
+        <!-- 第一排 中：地理分布 -->
+        <div class="dash-card map-card">
+            <div class="card-title">山西省国保单位地理分布</div>
+            <div id="map-container" class="map-box"></div>
+        </div>
+
+        <!-- 第一排 右：饼图 -->
+        <div class="dash-card">
+            <div class="card-title">文物类型分布</div>
+            <div id="chart-type" class="chart-box"></div>
+        </div>
+
+        <!-- 第二排 左：折线图 -->
+        <div class="dash-card">
+            <div class="card-title">各批次国保单位数量变化</div>
+            <div id="chart-line" class="chart-box"></div>
+        </div>
+
+        <!-- 第二排 中：热力图 -->
+        <div class="dash-card heatmap-card">
+            <div class="card-title">山西省各市国保单位热力图</div>
+            <div id="heatmap_shanxi" class="heatmap-box"></div>
+        </div>
+
+        <!-- 第二排 右：名录 -->
+        <div class="dash-card">
+            <div class="card-title">重点国保单位名录</div>
+            <div class="list-box" id="list-box"></div>
+        </div>
+
+    </div>
+</div>
+
+<!-- 引入依赖库 -->
+<script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+<script src="https://geo.datav.aliyun.com/areas_v3/bound/140000_full.json"></script>
+
+<script>
+// ===================== 数据准备 =====================
+// 1. 各市数据
+const cityData = [
+    { name: '运城', value: 103 },
+    { name: '长治', value: 74 },
+    { name: '晋城', value: 72 },
+    { name: '晋中', value: 70 },
+    { name: '临汾', value: 54 },
+    { name: '吕梁', value: 39 },
+    { name: '太原', value: 38 },
+    { name: '忻州', value: 36 },
+    { name: '大同', value: 32 },
+    { name: '阳泉', value: 11 },
+    { name: '朔州', value: 8 },
+];
+
+// 2. 各批次折线图数据
+const batchData = {
+    batch: ['第1批', '第2批', '第3批', '第4批', '第5批', '第6批', '第7批', '第8批'],
+    count: [13, 3, 18, 21, 64, 155, 182, 82]
+};
+
+// 3. 文物类型数据
+const typeData = [
+    { name: '古建筑', value: 421 },
+    { name: '古遗址', value: 46 },
+    { name: '古墓葬', value: 20 },
+    { name: '石窟寺及石刻', value: 15 },
+    { name: '近现代', value: 28 },
+    { name: '其他', value: 1 },
+];
+
+// 4. 重点国保名录（修复格式，确保正常渲染）
+const listData = [
+    '云冈石窟', '悬空寺', '华严寺', '善化寺', '大同九龙壁',
+    '晋祠', '天龙山石窟', '龙山石窟', '永祚寺', '窦大夫祠',
+    '平遥古城', '镇国寺', '双林寺', '日升昌票号', '乔家大院', '王家大院',
+    '五台山建筑群', '南禅寺', '佛光寺', '岩山寺',
+    '应县木塔', '崇福寺', '广武汉墓群',
+    '青莲寺', '玉皇庙', '开化寺', '姬氏民居', '湘峪古堡', '皇城相府',
+    '广胜寺', '丁村遗址', '陶寺遗址', '侯马晋国遗址',
+    '解州关帝庙', '永乐宫', '广仁王庙', '后土祠', '青龙寺', '稷王庙',
+    '法兴寺', '崇庆寺', '天台庵', '大云院', '龙门寺', '金灯寺石窟'
+];
+
+// ===================== 初始化所有图表 =====================
+function initAllCharts() {
+    // ---------- 1. 各市柱状图 ----------
+    const chartCity = echarts.init(document.getElementById('chart-city'));
+    chartCity.setOption({
+        backgroundColor: 'transparent',
+        grid: { left: '10%', right: '5%', bottom: '15%', top: '10%' },
+        xAxis: {
+            type: 'category',
+            data: cityData.map(i => i.name),
+            axisLabel: { color: '#cbd5e1', rotate: 30 },
+            axisLine: { lineStyle: { color: '#475569' } },
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: { color: '#cbd5e1' },
+            axisLine: { lineStyle: { color: '#475569' } },
+            splitLine: { lineStyle: { color: '#334155' } },
+        },
+        series: [{
+            type: 'bar',
+            data: cityData.map(i => i.value),
+            itemStyle: {
+                color: new echarts.graphic.LinearGradient(0,0,0,1,[
+                    { offset:0, color:'#38bdf8' },{ offset:1, color:'#7dd3fc' }
+                ])
+            }
+        }]
+    });
+
+    // ---------- 2. 批次折线图 ----------
+    const chartLine = echarts.init(document.getElementById('chart-line'));
+    chartLine.setOption({
+        backgroundColor: 'transparent',
+        grid: { left: '10%', right: '5%', bottom: '15%', top: '10%' },
+        xAxis: {
+            type: 'category',
+            data: batchData.batch,
+            axisLabel: { color: '#cbd5e1' },
+            axisLine: { lineStyle: { color: '#475569' } },
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: { color: '#cbd5e1' },
+            axisLine: { lineStyle: { color: '#475569' } },
+            splitLine: { lineStyle: { color: '#334155' } },
+        },
+        series: [{
+            type: 'line',
+            smooth: true,
+            data: batchData.count,
+            symbol: 'circle',
+            symbolSize: 8,
+            lineStyle: { color: '#4ade80', width: 3 },
+            itemStyle: { color: '#4ade80' }
+        }]
+    });
+
+    // ---------- 3. 类型饼图 ----------
+    const chartType = echarts.init(document.getElementById('chart-type'));
+    chartType.setOption({
+        backgroundColor: 'transparent',
+        tooltip: { trigger: 'item' },
+        series: [{
+            type: 'pie',
+            radius: ['40%', '70%'],
+            center: ['50%', '50%'],
+            data: typeData,
+            label: { color: '#e0f2fe' },
+            itemStyle: {
+                color: (params) => {
+                    const colors = ['#38bdf8','#4ade80','#fbbf24','#a78bfa','#fb923c','#94a3b8'];
+                    return colors[params.dataIndex % colors.length];
+                }
+            }
+        }]
+    });
+
+  // ---------- 4. 山西地图（修复NaN+完整显示） ----------
+const mapChart = echarts.init(document.getElementById('map-container'));
+
+fetch('https://geo.datav.aliyun.com/areas_v3/bound/140000_full.json')
+    .then(res => res.json())
+    .then(geoJson => {
+        echarts.registerMap('山西', geoJson);
+        mapChart.setOption({
+            backgroundColor: 'transparent',
+            tooltip: { 
+                trigger: 'item',
+                formatter: '{b}：{c} 个'
+            },
+            visualMap: {
+                min: 0,
+                max: 110,
+                left: 'left',
+                bottom: 10,
+                textStyle: { color: '#fff' },
+                inRange: { color: ['#1e293b', '#38bdf8', '#0ea5e9'] }
+            },
+            series: [{
+                type: 'map',
+                map: '山西',
+                roam: false,
+                zoom: 1.3,
+                label: { show: true, color: '#fff', fontSize: 12 },
+                itemStyle: { areaColor: '#131b33', borderColor: '#38bdf8', borderWidth:1 },
+                emphasis: { itemStyle: { areaColor: '#38bdf8' } },
+                data: [
+                    { name: '运城市', value: 103 },
+                    { name: '长治市', value: 74 },
+                    { name: '晋城市', value: 72 },
+                    { name: '晋中市', value: 70 },
+                    { name: '临汾市', value: 54 },
+                    { name: '吕梁市', value: 39 },
+                    { name: '太原市', value: 38 },
+                    { name: '忻州市', value: 36 },
+                    { name: '大同市', value: 32 },
+                    { name: '阳泉市', value: 11 },
+                    { name: '朔州市', value: 8 }
+                ]
+            }]
+        });
+
+        // ---------- 新增：初始化热力图 ----------
+        initHeatmapChart(geoJson);
+    });
+
+    // ---------- 5. 名录滚动（修复版：正确渲染DOM） ----------
+    const listBox = document.getElementById('list-box');
+    listBox.innerHTML = ''; // 清空容器
+    listData.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'list-item';
+        div.textContent = item;
+        listBox.appendChild(div);
+    });
+
+    // 自适应窗口大小
+    window.addEventListener('resize', () => {
+        chartCity.resize();
+        chartLine.resize();
+        chartType.resize();
+        mapChart.resize();
+        // 热力图自适应
+        if (window.heatmapChart) {
+            window.heatmapChart.resize();
+        }
+    });
+}
+
+// ===================== 初始化热力图函数 =====================
+function initHeatmapChart(geoJson) {
+    // 初始化热力图实例
+    window.heatmapChart = echarts.init(
+        document.getElementById('heatmap_shanxi'), 
+        'white', 
+        {renderer: 'canvas', locale: 'ZH'}
+    );
+
+    // 热力图配置项
+    const heatmapOption = {
+        title: [
+            {
+                show: true,
+                text: '热力图',
+                left: 'center',
+                top: 10,
+                textStyle: {
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                    color: '#333'
+                },
+                subtextStyle: {
+                    fontSize: 12,
+                    color: '#666'
+                }
+            }
+        ],
+        tooltip: {
+            show: true,
+            trigger: 'item',
+            triggerOn: 'mousemove',
+            formatter: function(params) {
+                return `<div style="padding:5px;">
+                    <strong>${params.name}</strong><br/>
+                    国保单位数量：<span style="color:#B30000;font-weight:bold;">${params.value}</span> 处<br/>
+                    热度：<span style="color:#D6604D;">${getHeatLevel(params.value)}</span>
+                </div>`;
+            },
+            backgroundColor: 'rgba(255,255,255,0.9)',
+            borderColor: '#ddd',
+            borderWidth: 1,
+            borderRadius: 6,
+            textStyle: {
+                fontSize: 14
+            }
+        },
+        visualMap: {
+            show: true,
+            type: 'continuous',
+            min: 0,
+            max: 110,
+            left: 'right',
+            top: 'center',
+            inRange: {
+                color: ['#FFFFE0', '#FFD700', '#FF8C00', '#FF4500', '#DC143C', '#8B0000']
+            },
+            calculable: true,
+            hoverLink: true,
+            text: ['高热度', '低热度'],
+            textStyle: {
+                fontSize: 12,
+                color: '#333'
+            },
+            itemWidth: 20,
+            itemHeight: 150
+        },
+        series: [
+            {
+                type: 'map',
+                name: '国保单位数量',
+                map: '山西',
+                roam: true,
+                zoom: 1.2,
+                aspectScale: 0.8,
+                label: {
+                    show: true,
+                    fontSize: 11,
+                    color: '#333',
+                    fontWeight: '500',
+                    formatter: '{b}\n{c}处'
+                },
+                emphasis: {
+                    label: {
+                        color: '#fff',
+                        fontSize: 12,
+                        fontWeight: 'bold'
+                    },
+                    itemStyle: {
+                        areaColor: '#FF6347',
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }
+                },
+                // 核心数据，名称完全匹配地图
+                data: [
+                    {"name": "运城市", "value": 103},
+                    {"name": "长治市", "value": 74},
+                    {"name": "晋城市", "value": 72},
+                    {"name": "晋中市", "value": 70},
+                    {"name": "临汾市", "value": 54},
+                    {"name": "吕梁市", "value": 39},
+                    {"name": "太原市", "value": 38},
+                    {"name": "忻州市", "value": 36},
+                    {"name": "大同市", "value": 32},
+                    {"name": "阳泉市", "value": 11},
+                    {"name": "朔州市", "value": 8}
+                ]
+            }
+        ]
+    };
+
+    // 热度等级计算函数
+    function getHeatLevel(value) {
+        if (value >= 80) return '极高';
+        else if (value >= 60) return '高';
+        else if (value >= 40) return '中高';
+        else if (value >= 20) return '中等';
+        else if (value >= 10) return '低';
+        else return '极低';
+    }
+
+    // 注册地图并渲染热力图
+    echarts.registerMap('山西', geoJson);
+    window.heatmapChart.setOption(heatmapOption);
+}
+
+// 页面加载完成后初始化
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initAllCharts();
+} else {
+    document.addEventListener('DOMContentLoaded', initAllCharts);
+}
+</script>

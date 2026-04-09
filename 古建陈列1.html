@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山西省全省重点古建陈列</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+             background-image: url('https://img1.baidu.com/it/u=889543262,2530023836&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=666');
+             background-size: cover;
+             background-position: center;
+             background-attachment: fixed;
+             background-repeat: no-repeat;
+             position: relative;
+         }
+         body::before {
+             content: '';
+             position: fixed;
+             top: 0; left: 0; width: 100%; height: 100%;
+             background-color: rgba(255,255,255,0.88);
+             z-index: -1;
+         }
+         .card-shadow {
+             box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+         }
+         .header-banner {
+             background-image: url('古建.jpg');
+             background-size: cover;
+             background-position: center;
+             position: relative;
+         }
+         .header-banner::before {
+             content: '';
+             position: absolute;
+             top: 0; left: 0; width: 100%; height: 100%;
+             background-color: rgba(0,0,0,0.45);
+             z-index: 0;
+         }
+     </style>
+ </head>
+ <body class="text-gray-800">
+ <!-- 顶部标题：正常定位，滚动会直接滚走，不固定、不跟随 -->
+ <header class="header-banner">
+     <div class="max-w-7xl mx-auto px-4 py-10 relative z-1">
+         <h1 class="text-[clamp(4rem,6vw,8rem)] font-bold text-center text-white drop-shadow-md">
+             山西省全省重点古建陈列
+         </h1>
+     </div>
+ </header>
+    <!-- 主内容 -->
+    <main class="max-w-7xl mx-auto px-4 py-8 mb-20">
+        <!-- 大同市 -->
+        <section class="mb-10">
+            <h2 class="text-xl sm:text-2xl font-bold text-red-700 mb-4 border-l-4 border-red-600 pl-3">大同市</h2>
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <!-- 平城区 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">平城区</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>大同关帝庙大殿（元）</li>
+                        <li>大同九龙壁（明）</li>
+                        <li>善化寺（辽、金）</li>
+                        <li>华严寺（辽、金、清）</li>
+                        <li>禅房寺塔（辽）</li>
+                        <li>平城兴国寺（明）</li>
+                        <li>大同鼓楼（明）</li>
+                    </ul>
+                </div>
+                <!-- 浑源县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">浑源县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>浑源圆觉寺塔（金）</li>
+                        <li>律吕神祠（元至清）</li>
+                        <li>浑源文庙（明至清）</li>
+                        <li>悬空寺（明）</li>
+                        <li>荆庄大云寺大雄宝殿（金）</li>
+                        <li>浑源永安寺（元）</li>
+                    </ul>
+                </div>
+                <!-- 灵丘县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">灵丘县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>觉山寺砖塔（辽）</li>
+                    </ul>
+                </div>
+                <!-- 广灵县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">广灵县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>水神堂（明至清）</li>
+                    </ul>
+                </div>
+                <!-- 云冈区 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">云冈区</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>云冈石窟（北魏，石窟寺）</li>
+                    </ul>
+                </div>
+                <!-- 天镇县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">天镇县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>慈云寺（明）</li>
+                    </ul>
+                </div>
+                <!-- 阳高县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">阳高县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>云林寺（明）</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 太原市 -->
+        <section class="mb-10">
+            <h2 class="text-xl sm:text-2xl font-bold text-red-700 mb-4 border-l-4 border-red-600 pl-3">太原市</h2>
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <!-- 晋源区 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">晋源区</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>晋祠（宋）</li>
+                        <li>明秀寺（明至清）</li>
+                        <li>太山龙泉寺（明至清）</li>
+                        <li>晋源文庙（明至清）</li>
+                        <li>晋源阿育王塔（明至清）</li>
+                    </ul>
+                </div>
+                <!-- 迎泽区 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">迎泽区</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>太原大关帝庙（明至清）</li>
+                        <li>太原清真寺（明至清）</li>
+                        <li>太原纯阳宫（明至清）</li>
+                        <li>崇善寺大悲殿（明至清）</li>
+                        <li>太原文庙（清）</li>
+                        <li>永祚寺（明至清）</li>
+                    </ul>
+                </div>
+                <!-- 尖草坪区 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">尖草坪区</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>窦大夫祠（元至清）</li>
+                        <li>净因寺（金至明）</li>
+                        <li>多福寺（明至清）</li>
+                    </ul>
+                </div>
+                <!-- 清徐县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">清徐县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>清徐尧庙（明至清）</li>
+                        <li>狐突庙（宋至清）</li>
+                        <li>清源文庙（金至清）</li>
+                    </ul>
+                </div>
+                <!-- 阳曲县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">阳曲县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>帖木儿塔（元）</li>
+                        <li>不二寺（金）</li>
+                        <li>阳曲大王庙大殿（明）</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 忻州市 -->
+        <section class="mb-10">
+            <h2 class="text-xl sm:text-2xl font-bold text-red-700 mb-4 border-l-4 border-red-600 pl-3">忻州市</h2>
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <!-- 五台县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">五台县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>南禅寺大殿（唐）</li>
+                        <li>佛光寺（唐至清）</li>
+                        <li>广济寺大雄宝殿（元）</li>
+                        <li>延庆寺（金至清）</li>
+                        <li>罗睺寺（明至清）</li>
+                    </ul>
+                </div>
+                <!-- 代县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">代县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>阿育王塔（元）</li>
+                        <li>边靖楼（明）</li>
+                        <li>长城雁门关段（明）</li>
+                        <li>代县文庙（明至清）</li>
+                    </ul>
+                </div>
+                <!-- 定襄县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">定襄县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>洪福寺（金）</li>
+                        <li>定襄关王庙（宋）</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 晋中市 -->
+        <section class="mb-10">
+            <h2 class="text-xl sm:text-2xl font-bold text-red-700 mb-4 border-l-4 border-red-600 pl-3">晋中市</h2>
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <!-- 平遥县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">平遥县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>平遥城墙（明）</li>
+                        <li>双林寺（明）</li>
+                        <li>镇国寺（五代至清）</li>
+                        <li>平遥文庙（金至清）</li>
+                        <li>日升昌旧址（清）</li>
+                        <li>清虚观（元至清）</li>
+                    </ul>
+                </div>
+                <!-- 介休市 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">介休市</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>祆神楼（清）</li>
+                        <li>介休后土庙（明、清）</li>
+                        <li>张壁古堡（宋至清）</li>
+                    </ul>
+                </div>
+                <!-- 灵石县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">灵石县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>王家大院（明至清）</li>
+                        <li>资寿寺（明）</li>
+                    </ul>
+                </div>
+                <!-- 祁县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">祁县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>乔家大院（清）</li>
+                        <li>渠家大院（清）</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 运城市 -->
+        <section class="mb-10">
+            <h2 class="text-xl sm:text-2xl font-bold text-red-700 mb-4 border-l-4 border-red-600 pl-3">运城市</h2>
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <!-- 芮城县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">芮城县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>永乐宫（元）</li>
+                        <li>广仁王庙（唐）</li>
+                        <li>芮城城隍庙（北宋至清）</li>
+                    </ul>
+                </div>
+                <!-- 盐湖区 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">盐湖区</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>解州关帝庙（清）</li>
+                        <li>泛舟禅师塔（唐）</li>
+                        <li>舜帝陵庙（元至清）</li>
+                    </ul>
+                </div>
+                <!-- 新绛县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">新绛县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>绛州大堂（元）</li>
+                        <li>福胜寺（元、明）</li>
+                        <li>稷益庙（明）</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 长治市 -->
+        <section class="mb-10">
+            <h2 class="text-xl sm:text-2xl font-bold text-red-700 mb-4 border-l-4 border-red-600 pl-3">长治市</h2>
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <!-- 长子县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">长子县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>法兴寺（唐、宋）</li>
+                        <li>崇庆寺（宋）</li>
+                    </ul>
+                </div>
+                <!-- 平顺县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">平顺县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>天台庵（唐）</li>
+                        <li>大云院（五代至清）</li>
+                        <li>龙门寺（五代至清）</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 晋城市 -->
+        <section class="mb-10">
+            <h2 class="text-xl sm:text-2xl font-bold text-red-700 mb-4 border-l-4 border-red-600 pl-3">晋城市</h2>
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <!-- 高平市 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">高平市</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>姬氏民居（元）</li>
+                        <li>开化寺（北宋至清）</li>
+                        <li>崇明寺（北宋至明）</li>
+                    </ul>
+                </div>
+                <!-- 泽州县 -->
+                <div class="bg-white rounded-xl p-4 card-shadow">
+                    <h3 class="font-semibold text-blue-700 mb-2">泽州县</h3>
+                    <ul class="text-sm space-y-1.5 text-gray-700">
+                        <li>青莲寺（唐至清）</li>
+                        <li>玉皇庙（宋至清）</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部 -->
+    <footer class="bg-white py-4 text-center text-gray-500 text-sm">
+       三晋古建 · 文脉千年
+    </footer>
+</body>
+</html>
