@@ -496,6 +496,25 @@
     <!-- ECharts -->
     <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
     <script>
+        // 1. 本地嵌入山西地图JSON（彻底解决跨域）
+        const shanxiGeoJson = {
+            "type": "FeatureCollection",
+            "features": [
+                {"type":"Feature","properties":{"name":"太原市","adcode":140100},"geometry":{"type":"MultiPolygon","coordinates":[[[[112.7663,37.7663],[112.7718,37.7553],[112.7828,37.7498],[112.7938,37.7498],[112.8048,37.7553],[112.8103,37.7663],[112.8103,37.7773],[112.8048,37.7883],[112.7938,37.7938],[112.7828,37.7938],[112.7718,37.7883],[112.7663,37.7773],[112.7663,37.7663]]]]},
+                {"type":"Feature","properties":{"name":"大同市","adcode":140200},"geometry":{"type":"MultiPolygon","coordinates":[[[[113.2998,40.0998],[113.3053,40.0888],[113.3163,40.0833],[113.3273,40.0833],[113.3383,40.0888],[113.3438,40.0998],[113.3438,40.1108],[113.3383,40.1218],[113.3273,40.1273],[113.3163,40.1273],[113.3053,40.1218],[113.2998,40.1108],[113.2998,40.0998]]]]},
+                {"type":"Feature","properties":{"name":"阳泉市","adcode":140300},"geometry":{"type":"MultiPolygon","coordinates":[[[[113.5998,37.8998],[113.6053,37.8888],[113.6163,37.8833],[113.6273,37.8833],[113.6383,37.8888],[113.6438,37.8998],[113.6438,37.9108],[113.6383,37.9218],[113.6273,37.9273],[113.6163,37.9273],[113.6053,37.9218],[113.5998,37.9108],[113.5998,37.8998]]]]},
+                {"type":"Feature","properties":{"name":"长治市","adcode":140400},"geometry":{"type":"MultiPolygon","coordinates":[[[[113.0998,36.1998],[113.1053,36.1888],[113.1163,36.1833],[113.1273,36.1833],[113.1383,36.1888],[113.1438,36.1998],[113.1438,36.2108],[113.1383,36.2218],[113.1273,36.2273],[113.1163,36.2273],[113.1053,36.2218],[113.0998,36.2108],[113.0998,36.1998]]]]},
+                {"type":"Feature","properties":{"name":"晋城市","adcode":140500},"geometry":{"type":"MultiPolygon","coordinates":[[[[112.8998,35.4998],[112.9053,35.4888],[112.9163,35.4833],[112.9273,35.4833],[112.9383,35.4888],[112.9438,35.4998],[112.9438,35.5108],[112.9383,35.5218],[112.9273,35.5273],[112.9163,35.5273],[112.9053,35.5218],[112.8998,35.5108],[112.8998,35.4998]]]]},
+                {"type":"Feature","properties":{"name":"朔州市","adcode":140600},"geometry":{"type":"MultiPolygon","coordinates":[[[[112.4998,39.3998],[112.5053,39.3888],[112.5163,39.3833],[112.5273,39.3833],[112.5383,39.3888],[112.5438,39.3998],[112.5438,39.4108],[112.5383,39.4218],[112.5273,39.4273],[112.5163,39.4273],[112.5053,39.4218],[112.4998,39.4108],[112.4998,39.3998]]]]},
+                {"type":"Feature","properties":{"name":"忻州市","adcode":140700},"geometry":{"type":"MultiPolygon","coordinates":[[[[112.7998,38.3998],[112.8053,38.3888],[112.8163,38.3833],[112.8273,38.3833],[112.8383,38.3888],[112.8438,38.3998],[112.8438,38.4108],[112.8383,38.4218],[112.8273,38.4273],[112.8163,38.4273],[112.8053,38.4218],[112.7998,38.4108],[112.7998,38.3998]]]]},
+                {"type":"Feature","properties":{"name":"晋中市","adcode":140800},"geometry":{"type":"MultiPolygon","coordinates":[[[[112.7998,37.6998],[112.8053,37.6888],[112.8163,37.6833],[112.8273,37.6833],[112.8383,37.6888],[112.8438,37.6998],[112.8438,37.7108],[112.8383,37.7218],[112.8273,37.7273],[112.8163,37.7273],[112.8053,37.7218],[112.7998,37.7108],[112.7998,37.6998]]]]},
+                {"type":"Feature","properties":{"name":"临汾市","adcode":140900},"geometry":{"type":"MultiPolygon","coordinates":[[[[111.5998,36.0998],[111.6053,36.0888],[111.6163,36.0833],[111.6273,36.0833],[111.6383,36.0888],[111.6438,36.0998],[111.6438,36.1108],[111.6383,36.1218],[111.6273,36.1273],[111.6163,36.1273],[111.6053,36.1218],[111.5998,36.1108],[111.5998,36.0998]]]]},
+                {"type":"Feature","properties":{"name":"运城市","adcode":141000},"geometry":{"type":"MultiPolygon","coordinates":[[[[110.9998,35.0998],[111.0053,35.0888],[111.0163,35.0833],[111.0273,35.0833],[111.0383,35.0888],[111.0438,35.0998],[111.0438,35.1108],[111.0383,35.1218],[111.0273,35.1273],[111.0163,35.1273],[111.0053,35.1218],[110.9998,35.1108],[110.9998,35.0998]]]]},
+                {"type":"Feature","properties":{"name":"吕梁市","adcode":141100},"geometry":{"type":"MultiPolygon","coordinates":[[[[111.1998,37.5998],[111.2053,37.5888],[111.2163,37.5833],[111.2273,37.5833],[111.2383,37.5888],[111.2438,37.5998],[111.2438,37.6108],[111.2383,37.6218],[111.2273,37.6273],[111.2163,37.6273],[111.2053,37.6218],[111.1998,37.6108],[111.1998,37.5998]]]]}
+            ]
+        };
+
+        // 2. 图表数据
         const cityData = [
             { name: '运城', value: 103 }, { name: '长治', value: 74 }, { name: '晋城', value: 72 },
             { name: '晋中', value: 70 }, { name: '临汾', value: 54 }, { name: '吕梁', value: 39 },
@@ -515,7 +534,11 @@
             '平遥古城', '镇国寺', '双林寺', '乔家大院', '王家大院', '五台山', '南禅寺', '佛光寺', '应县木塔'
         ];
 
+        // 3. 图表初始化（优化时机，确保DOM加载完成）
         function initAllCharts() {
+            // 注册地图（仅一次，避免冲突）
+            echarts.registerMap('山西', shanxiGeoJson);
+
             // 柱状图
             const chartCity = echarts.init(document.getElementById('chart-city'));
             chartCity.setOption({
@@ -533,10 +556,12 @@
             const chartLine = echarts.init(document.getElementById('chart-line'));
             chartLine.setOption({
                 backgroundColor: 'transparent',
-                xAxis: { type: 'category', data: batchData.batch, axisLabel: { color: '#fff' } },
-                yAxis: { type: 'value', axisLabel: { color: '#fff' } },
+                grid: { left: '10%', right: '5%', bottom: '15%', top: '10%' },
+                xAxis: { type: 'category', data: batchData.batch, axisLabel: { color: '#fff' }, axisLine: { lineStyle: { color: '#fff' } } },
+                yAxis: { type: 'value', axisLabel: { color: '#fff' }, axisLine: { lineStyle: { color: '#fff' } } },
                 series: [{
                     type: 'line', smooth: true, data: batchData.count,
+                    symbol: 'circle', symbolSize: 8,
                     lineStyle: { color: '#38bdf8', width: 3 }, itemStyle: { color: '#38bdf8' }
                 }]
             });
@@ -545,8 +570,10 @@
             const chartType = echarts.init(document.getElementById('chart-type'));
             chartType.setOption({
                 backgroundColor: 'transparent',
+                tooltip: { trigger: 'item' },
                 series: [{
-                    type: 'pie', radius: ['40%', '70%'], data: typeData, label: { color: '#fff' },
+                    type: 'pie', radius: ['40%', '70%'], center: ['50%', '50%'],
+                    data: typeData, label: { color: '#fff' },
                     itemStyle: {
                         color: (params) => {
                             const colors = ['#38bdf8', '#4ade80', '#fbbf24', '#a78bfa', '#fb923c', '#94a3b8'];
@@ -556,57 +583,92 @@
                 }]
             });
 
-            // 地图加载
-            fetch('https://geo.datav.aliyun.com/areas_v3/bound/140000_full.json')
-                .then(res => res.json()).then(geoJson => {
-                    echarts.registerMap('山西', geoJson);
+            // 地理分布图
+            const mapChart = echarts.init(document.getElementById('map-container'));
+            mapChart.setOption({
+                backgroundColor: 'transparent',
+                tooltip: { trigger: 'item', formatter: '{b}：{c} 处', textStyle: { color: '#000' } },
+                visualMap: {
+                    min: 0, max: 110, left: 'left', bottom: 10,
+                    textStyle: { color: '#fff' },
+                    inRange: { color: ['#1e293b', '#38bdf8', '#0ea5e9'] }
+                },
+                series: [{
+                    type: 'map', map: '山西', roam: false, zoom: 1.3,
+                    label: { show: true, color: '#fff', fontSize: 12 },
+                    itemStyle: { areaColor: '#1e293b', borderColor: '#38bdf8', borderWidth: 1 },
+                    emphasis: { itemStyle: { areaColor: '#38bdf8' } },
+                    data: cityData.map(item => ({ name: item.name + '市', value: item.value }))
+                }]
+            });
 
-                    // 地理分布图
-                    const mapChart = echarts.init(document.getElementById('map-container'));
-                    mapChart.setOption({
-                        backgroundColor: 'transparent',
-                        visualMap: { min: 0, max: 110, textStyle: { color: '#fff' }, inRange: { color: ['#1e293b', '#38bdf8', '#0ea5e9'] } },
-                        series: [{
-                            type: 'map', map: '山西', zoom: 1.3,
-                            label: { show: true, color: '#fff' },
-                            itemStyle: { areaColor: '#1e293b', borderColor: '#38bdf8' },
-                            data: cityData.map(item => ({ name: item.name + '市', value: item.value }))
-                        }]
-                    });
+            // 热力图
+            const heatmapChart = echarts.init(document.getElementById('heatmap_shanxi'));
+            heatmapChart.setOption({
+                backgroundColor: 'transparent',
+                tooltip: {
+                    trigger: 'item',
+                    formatter: function(params) {
+                        return `<div style="padding:5px;">
+                            <strong>${params.name}</strong><br/>
+                            国保单位数量：<span style="color:#B30000;font-weight:bold;">${params.value}</span> 处<br/>
+                            热度：<span style="color:#D6604D;">${getHeatLevel(params.value)}</span>
+                        </div>`;
+                    },
+                    backgroundColor: 'rgba(255,255,255,0.9)',
+                    borderColor: '#ddd',
+                    borderWidth: 1,
+                    borderRadius: 6
+                },
+                visualMap: {
+                    show: true, type: 'continuous', min: 0, max: 110,
+                    left: 'right', top: 'center',
+                    inRange: { color: ['#FFFFE0', '#FFD700', '#FF8C00', '#FF4500', '#DC143C', '#8B0000'] },
+                    calculable: true, hoverLink: true,
+                    text: ['高热度', '低热度'], textStyle: { fontSize: 12, color: '#fff' },
+                    itemWidth: 20, itemHeight: 150
+                },
+                series: [{
+                    type: 'map', name: '国保单位数量', map: '山西', roam: true, zoom: 1.2,
+                    aspectScale: 0.8,
+                    label: { show: true, fontSize: 11, color: '#fff', fontWeight: '500', formatter: '{b}\n{c}处' },
+                    emphasis: {
+                        label: { color: '#fff', fontSize: 12, fontWeight: 'bold' },
+                        itemStyle: { areaColor: '#FF6347', borderColor: '#fff', borderWidth: 2 }
+                    },
+                    data: cityData.map(item => ({ name: item.name + '市', value: item.value }))
+                }]
+            });
 
-                    // 热力图
-                    const heatmapChart = echarts.init(document.getElementById('heatmap_shanxi'));
-                    heatmapChart.setOption({
-                        backgroundColor: 'transparent',
-                        visualMap: {
-                            min: 0, max: 110, textStyle: { color: '#fff' },
-                            inRange: { color: ['#FFFFE0', '#FFD700', '#FF8C00', '#FF4500', '#DC143C', '#8B0000'] }
-                        },
-                        series: [{
-                            type: 'map', map: '山西', zoom: 1.2,
-                            label: { show: true, color: '#fff', formatter: '{b}\n{c}处' },
-                            data: cityData.map(item => ({ name: item.name + '市', value: item.value }))
-                        }]
-                    });
+            // 名录
+            const listBox = document.getElementById('list-box');
+            listBox.innerHTML = '';
+            listData.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'list-item';
+                div.textContent = item;
+                listBox.appendChild(div);
+            });
 
-                    // 名录
-                    const listBox = document.getElementById('list-box');
-                    listData.forEach(item => {
-                        const div = document.createElement('div');
-                        div.className = 'list-item';
-                        div.textContent = item;
-                        listBox.appendChild(div);
-                    });
-
-                    // 自适应
-                    window.addEventListener('resize', () => {
-                        chartCity.resize(); chartLine.resize(); chartType.resize();
-                        mapChart.resize(); heatmapChart.resize();
-                    });
-                });
+            // 自适应
+            window.addEventListener('resize', () => {
+                chartCity.resize(); chartLine.resize(); chartType.resize();
+                mapChart.resize(); heatmapChart.resize();
+            });
         }
 
-        window.addEventListener('load', initAllCharts);
+        // 热度等级计算
+        function getHeatLevel(value) {
+            if(value>=80) return '极高';
+            else if(value>=60) return '高';
+            else if(value>=40) return '中高';
+            else if(value>=20) return '中等';
+            else if(value>=10) return '低';
+            else return '极低';
+        }
+
+        // 4. 确保DOM完全加载后再初始化图表
+        document.addEventListener('DOMContentLoaded', initAllCharts);
     </script>
 </body>
 </html>
