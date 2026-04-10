@@ -13,12 +13,11 @@
             font-family: "Microsoft Yahei", "SimHei", sans-serif;
         }
 
-       /* 页面容器（核心修复：取消固定1200px限制，适配全屏） */
-.container {
-    width: 98%;  /* 用百分比代替固定1200px，适配所有屏幕 */
-    max-width: 1920px; /* 大屏最大宽度限制，避免无限拉伸 */
-    margin: 0 auto;
-}
+        /* 页面容器 */
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+        }
 
         /* 1. 头部区域（核心：斜体艺术字+渐变+背景图） */
         header {
@@ -78,129 +77,124 @@
             border-radius: 4px;
         }
 
-/* 3. 主体三栏容器（核心修复：强制不换行、防挤压） */
-.main {
-    display: flex;
-    gap: 20px;
-    padding: 10px 0 30px;
-    min-height: calc(100vh - 301px);
-    flex-wrap: nowrap; /* 强制三栏不换行，绝对不挤 */
-    align-items: flex-start; /* 顶部对齐，避免高低不齐 */
-}
+        /* 3. 主体三栏容器 */
+        .main {
+            display: flex;
+            gap: 25px;
+            padding: 10px 0 30px;
+            min-height: calc(100vh - 301px);
+        }
 
-/* 左栏：山西景点导航（固定宽度+最小宽度，绝不被压缩） */
-.left {
-    width: 220px;
-    min-width: 220px; /* 强制最小宽度，绝不被挤窄 */
-    background-color: #f8f9fa;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-.left h3 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #ff6b35;
-    font-size: 20px;
-}
-.left ul {
-    list-style: none;
-}
-.left ul li {
-    margin-bottom: 15px;
-}
-.left ul li a {
-    color: #34495e;
-    text-decoration: none;
-    font-size: 16px;
-    transition: all 0.3s;
-    display: block;
-    padding: 6px 0;
-}
-.left ul li a:hover {
-    color: #ff6b35;
-    padding-left: 8px;
-    border-left: 3px solid #ff6b35;
-}
+        /* 左栏：山西景点导航 */
+        .left {
+            width: 220px;
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .left h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ff6b35;
+            font-size: 20px;
+        }
+        .left ul {
+            list-style: none;
+        }
+        .left ul li {
+            margin-bottom: 15px;
+        }
+        .left ul li a {
+            color: #34495e;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: block;
+            padding: 6px 0;
+        }
+        .left ul li a:hover {
+            color: #ff6b35;
+            padding-left: 8px;
+            border-left: 3px solid #ff6b35;
+        }
 
-/* 中栏：主体内容区（自适应+最小宽度，保证城市按钮完整显示） */
-.center {
-    flex: 1;
-    min-width: 700px; /* 给中栏足够最小宽度，保证3列城市按钮不挤 */
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-}
-.center h2 {
-    color: #2c3e50;
-    margin-bottom: 25px;
-    font-size: 24px;
-    border-left: 4px solid #ff6b35;
-    padding-left: 15px;
-}
+        /* 中栏：主体内容区 */
+        .center {
+            flex: 1;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .center h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 24px;
+            border-left: 4px solid #ff6b35;
+            padding-left: 15px;
+        }
 
-/* 十一个城市导航布局（适配中栏宽度，保证按钮完整） */
-.city-nav {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 10px;
-}
-.city-nav a {
-    display: inline-block;
-    padding: 18px;
-    text-align: center;
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    transition: 0.3s;
-}
-.city-nav a:hover {
-    opacity: 0.85;
-    transform: translateY(-3px);
-}
+        /* 十一个城市导航布局 */
+        .city-nav {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 10px;
+        }
+        .city-nav a {
+            display: inline-block;
+            padding: 18px;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .city-nav a:hover {
+            opacity: 0.85;
+            transform: translateY(-3px);
+        }
 
-/* 右栏：山西特色展示（固定宽度+最小宽度，绝不被压缩） */
-.right {
-    width: 280px;
-    min-width: 280px; /* 强制最小宽度，绝不被挤窄 */
-    background-color: #f8f9fa;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-.right h3 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #ff6b35;
-    font-size: 20px;
-}
-.feature-item {
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 6px;
-    margin-bottom: 15px;
-    transition: all 0.3s;
-}
-.feature-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-.feature-item h4 {
-    color: #ff6b35;
-    margin-bottom: 8px;
-    font-size: 18px;
-}
-.feature-item p {
-    color: #666;
-    font-size: 14px;
-    line-height: 1.6;
-}
+        /* 右栏：山西特色展示 */
+        .right {
+            width: 280px;
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .right h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ff6b35;
+            font-size: 20px;
+        }
+        .feature-item {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .feature-item h4 {
+            color: #ff6b35;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        .feature-item p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
 
         /* 4. 页脚 */
         footer {
@@ -448,49 +442,7 @@ new CozeWebSDK.WebChatClient({
                     </div>
                 </div>
 
-
-            <div class="right">
-                <h3>山西特色名片</h3>
-                <div class="feature-item">
-                    <h4>古建之乡</h4>
-                    <p>拥有中国现存最多的元代以前古建筑，被誉为“中国古代建筑博物馆”。</p>
-                </div>
-                <div class="feature-item">
-                    <h4>晋商文化</h4>
-                    <p>明清时期晋商纵横天下，票号、大院见证了曾经的商业辉煌。</p>
-                </div>
-                <div class="feature-item">
-                    <h4>面食之都</h4>
-                    <p>刀削面、剔尖、擦尖等数十种面食，风味独特，享誉全国。</p>
-                </div>
-                <div class="feature-item">
-                    <h4>黄河文化</h4>
-                    <p>黄河流经山西965公里，孕育了壶口瀑布等壮丽景观与厚重文化。</p>
-                </div>
-
-                <!-- 新增：国保可视化链接 -->
-                <h3 style="margin-top:25px;">国保数据可视化</h3>
-                <div class="feature-item">
-                    <a href="山西国保地图.html" style="text-decoration:none;">
-    <h4>三晋国保地理图鉴</h4>
-</a>
-                    <p>一张图解锁三晋国宝版图！以山西全域为画布，清晰标注11地市行政边界，完整铺展全省国保单位的地理脉络，带你一眼看懂千年文物在三晋大地的星罗棋布，解锁每一处国保的地理坐标，开启沉浸式寻根之旅。</p>
-                </div>
-                <div class="feature-item">
-                   <a href="热力图.html" style="text-decoration:none;">
-    <h4>山西国保热力榜</h4>
-</a>
-                    <p>用色彩解锁山西国保密码！以热度梯度直观呈现11地市国保数量差异，从暖黄到赤红的渐变，精准标注各市国保富集度，一眼看清晋南、晋东南等国保高地，带你秒懂山西“文物大省”的硬核实力，一键解锁寻古打卡的宝藏路线。</p>
-                </div>
-            </div>
-        </div>
-
-        <footer>
-           山川形胜 · 怡然晋中
-        </footer>
-    </div>
-
-        <!-- 山西国保地图（完整嵌入原文件代码） -->
+                <!-- 山西国保地图（完整嵌入原文件代码） -->
                 <div id="shanxi-map-container">
                     <script type="text/javascript" src="https://assets.pyecharts.org/assets/v6/echarts.min.js"></script>
                     <script type="text/javascript" src="https://assets.pyecharts.org/assets/v6/maps/shanxi.js"></script>
@@ -849,6 +801,48 @@ new CozeWebSDK.WebChatClient({
                     </script>
                 </div>
             </div>
+
+            <div class="right">
+                <h3>山西特色名片</h3>
+                <div class="feature-item">
+                    <h4>古建之乡</h4>
+                    <p>拥有中国现存最多的元代以前古建筑，被誉为“中国古代建筑博物馆”。</p>
+                </div>
+                <div class="feature-item">
+                    <h4>晋商文化</h4>
+                    <p>明清时期晋商纵横天下，票号、大院见证了曾经的商业辉煌。</p>
+                </div>
+                <div class="feature-item">
+                    <h4>面食之都</h4>
+                    <p>刀削面、剔尖、擦尖等数十种面食，风味独特，享誉全国。</p>
+                </div>
+                <div class="feature-item">
+                    <h4>黄河文化</h4>
+                    <p>黄河流经山西965公里，孕育了壶口瀑布等壮丽景观与厚重文化。</p>
+                </div>
+
+                <!-- 新增：国保可视化链接 -->
+                <h3 style="margin-top:25px;">国保数据可视化</h3>
+                <div class="feature-item">
+                    <a href="#shanxi-map-container" style="text-decoration:none;">
+    <h4>三晋国保地理图鉴</h4>
+</a>
+                    <p>一张图解锁三晋国宝版图！以山西全域为画布，清晰标注11地市行政边界，完整铺展全省国保单位的地理脉络，带你一眼看懂千年文物在三晋大地的星罗棋布，解锁每一处国保的地理坐标，开启沉浸式寻根之旅。</p>
+                </div>
+                <div class="feature-item">
+                   <a href="#shanxi-heatmap-container" style="text-decoration:none;">
+    <h4>山西国保热力榜</h4>
+</a>
+                    <p>用色彩解锁山西国保密码！以热度梯度直观呈现11地市国保数量差异，从暖黄到赤红的渐变，精准标注各市国保富集度，一眼看清晋南、晋东南等国保高地，带你秒懂山西“文物大省”的硬核实力，一键解锁寻古打卡的宝藏路线。</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+           山川形胜 · 怡然晋中
+        </footer>
+    </div>
+
     <!-- ECharts 依赖 -->
     <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
 
