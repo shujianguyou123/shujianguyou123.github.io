@@ -78,20 +78,22 @@
             border-radius: 4px;
         }
 
-/* 3. 主体三栏容器（核心修复：强制不换行、防挤压） */
+/* 3. 主体三栏容器 */
 .main {
     display: flex;
-    gap: 20px;
-    padding: 10px 0 30px;
-    min-height: calc(100vh - 301px);
-    flex-wrap: nowrap; /* 强制三栏不换行，绝对不挤 */
-    align-items: flex-start; /* 顶部对齐，避免高低不齐 */
+    gap: 12px;
+    padding: 10px 0 15px; /* 底部空白从 30px → 15px 缩小 */
+    min-height: calc(100vh - 280px); /* 最关键：减少底部高度 */
+    width: 100%;
+    flex-wrap: nowrap;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
-/* 左栏：山西景点导航（固定宽度+最小宽度，绝不被压缩） */
+/* 左栏：山西景点导航 */
 .left {
-    width: 220px;
-    min-width: 220px; /* 强制最小宽度，绝不被挤窄 */
+    width: 260px;
+    min-width: 260px;
     background-color: #f8f9fa;
     padding: 25px;
     border-radius: 8px;
@@ -106,6 +108,7 @@
 }
 .left ul {
     list-style: none;
+    padding: 0;
 }
 .left ul li {
     margin-bottom: 15px;
@@ -124,10 +127,10 @@
     border-left: 3px solid #ff6b35;
 }
 
-/* 中栏：主体内容区（自适应+最小宽度，保证城市按钮完整显示） */
+/* 中栏：主体内容区 */
 .center {
     flex: 1;
-    min-width: 700px; /* 给中栏足够最小宽度，保证3列城市按钮不挤 */
+    min-width: 500px;
     background-color: #fff;
     padding: 30px;
     border-radius: 8px;
@@ -141,7 +144,7 @@
     padding-left: 15px;
 }
 
-/* 十一个城市导航布局（适配中栏宽度，保证按钮完整） */
+/* 十一个城市导航布局 */
 .city-nav {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -164,10 +167,10 @@
     transform: translateY(-3px);
 }
 
-/* 右栏：山西特色展示（固定宽度+最小宽度，绝不被压缩） */
+/* 右栏：山西特色展示 */
 .right {
-    width: 280px;
-    min-width: 280px; /* 强制最小宽度，绝不被挤窄 */
+    width: 320px;
+    min-width: 320px;
     background-color: #f8f9fa;
     padding: 25px;
     border-radius: 8px;
