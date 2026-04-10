@@ -448,7 +448,40 @@ new CozeWebSDK.WebChatClient({
                 </div>
 
                 <!-- 山西国保地图（完整嵌入原文件代码） -->
-                <div id="山西国保地图.html">
+                <!-- 山西国保热力图（修复版） -->
+<div id="heatmap_shanxi" style="width:100%;height:800px;"></div>
+<script type="text/javascript">
+var chart = echarts.init(document.getElementById('heatmap_shanxi'));
+
+// 正确地图数据 + 不跨域
+var option = {
+    tooltip: { trigger: 'item' },
+    visualMap: {
+        min: 0, max: 110,
+        inRange: { color: ['#FFFFE0','#FFD700','#FF8C00','#FF4500','#DC143C','#8B0000'] }
+    },
+    series: [{
+        type: 'map',
+        map: '山西',
+        zoom: 1.2,
+        label: { show: true, formatter: '{b}\n{c}处' },
+        data: [
+            { name: '运城市', value: 103 },
+            { name: '长治市', value: 74 },
+            { name: '晋城市', value: 72 },
+            { name: '晋中市', value: 70 },
+            { name: '临汾市', value: 54 },
+            { name: '吕梁市', value: 39 },
+            { name: '太原市', value: 38 },
+            { name: '忻州市', value: 36 },
+            { name: '大同市', value: 32 },
+            { name: '阳泉市', value: 11 },
+            { name: '朔州市', value: 8 }
+        ]
+    }]
+};
+
+                
                     <script type="text/javascript" src="https://assets.pyecharts.org/assets/v6/echarts.min.js"></script>
                     <script type="text/javascript" src="https://assets.pyecharts.org/assets/v6/maps/shanxi.js"></script>
                     <div id="8a8b909960404fd4a78f6abce438b8c8" style="width:1000px; height:800px;"></div>
