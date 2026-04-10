@@ -315,7 +315,7 @@
         /* ========== 大屏样式结束 ========== */
 
         /* 新增：国保地图和热力图容器样式（确保和原文件一致） */
-        山西国保地图.html, 热力图.html {
+        #shanxi-map-container, #shanxi-heatmap-container {
             width: 100%;
             height: 800px;
             margin: 20px 0;
@@ -448,39 +448,8 @@ new CozeWebSDK.WebChatClient({
                 </div>
 
                 <!-- 山西国保地图（完整嵌入原文件代码） -->
-                <!-- 山西国保热力图（修复版） -->
-<div id="heatmap_shanxi" style="width:100%;height:800px;"></div>
-<script type="text/javascript">
-var chart = echarts.init(document.getElementById('heatmap_shanxi'));
-
-// 正确地图数据 + 不跨域
-var option = {
-    tooltip: { trigger: 'item' },
-    visualMap: {
-        min: 0, max: 110,
-        inRange: { color: ['#FFFFE0','#FFD700','#FF8C00','#FF4500','#DC143C','#8B0000'] }
-    },
-    series: [{
-        type: 'map',
-        map: '山西',
-        zoom: 1.2,
-        label: { show: true, formatter: '{b}\n{c}处' },
-        data: [
-            { name: '运城市', value: 103 },
-            { name: '长治市', value: 74 },
-            { name: '晋城市', value: 72 },
-            { name: '晋中市', value: 70 },
-            { name: '临汾市', value: 54 },
-            { name: '吕梁市', value: 39 },
-            { name: '太原市', value: 38 },
-            { name: '忻州市', value: 36 },
-            { name: '大同市', value: 32 },
-            { name: '阳泉市', value: 11 },
-            { name: '朔州市', value: 8 }
-        ]
-    }]
-};
- <script type="text/javascript" src="https://assets.pyecharts.org/assets/v6/echarts.min.js"></script>
+                <div id="shanxi-map-container">
+                    <script type="text/javascript" src="https://assets.pyecharts.org/assets/v6/echarts.min.js"></script>
                     <script type="text/javascript" src="https://assets.pyecharts.org/assets/v6/maps/shanxi.js"></script>
                     <div id="8a8b909960404fd4a78f6abce438b8c8" style="width:1000px; height:800px;"></div>
                     <script>
@@ -699,11 +668,9 @@ var option = {
                         chart_8a8b909960404fd4a78f6abce438b8c8.setOption(option_8a8b909960404fd4a78f6abce438b8c8);
                     </script>
                 </div>
-                
-                   
 
                 <!-- 山西国保热力图（完整嵌入原文件代码） -->
-                <div id="热力图.html">
+                <div id="shanxi-heatmap-container">
                     <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
                     <script type="text/javascript" src="https://geo.datav.aliyun.com/areas_v3/bound/140000_full.json"></script>
                     <div id="heatmap_shanxi" style="width:1200px; height:800px;"></div>
@@ -862,20 +829,22 @@ var option = {
                 <!-- 新增：国保可视化链接 -->
                 <h3 style="margin-top:25px;">国保数据可视化</h3>
                 <div class="feature-item">
-                    <a href="山西国保地图.html" style="text-decoration:none;">
+                    <a href="#shanxi-map-container" style="text-decoration:none;">
     <h4>三晋国保地理图鉴</h4>
 </a>
                     <p>一张图解锁三晋国宝版图！以山西全域为画布，清晰标注11地市行政边界，完整铺展全省国保单位的地理脉络，带你一眼看懂千年文物在三晋大地的星罗棋布，解锁每一处国保的地理坐标，开启沉浸式寻根之旅。</p>
                 </div>
                 <div class="feature-item">
-                   <a href="热力图.html" style="text-decoration:none;">
-    <h4>山西国保热力榜</h4>用色彩解锁山西国保密码！以热度梯度直观呈现11地市国保数量差异，从暖黄到赤红的渐变，精准标注各市国保富集度，一眼看清晋南、晋东南等国保高地，带你秒懂山西“文物大省”的硬核实力，一键解锁寻古打卡的宝藏路线。</p>
+                   <a href="#shanxi-heatmap-container" style="text-decoration:none;">
+    <h4>山西国保热力榜</h4>
+</a>
+                    <p>用色彩解锁山西国保密码！以热度梯度直观呈现11地市国保数量差异，从暖黄到赤红的渐变，精准标注各市国保富集度，一眼看清晋南、晋东南等国保高地，带你秒懂山西“文物大省”的硬核实力，一键解锁寻古打卡的宝藏路线。</p>
                 </div>
             </div>
         </div>
 
         <footer>
-           晋善晋美·魅力山西
+           山川形胜 · 怡然晋中
         </footer>
     </div>
 
