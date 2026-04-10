@@ -1,136 +1,143 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>山西欢迎您</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Microsoft Yahei", sans-serif; }
-        body { background-color: #f5f7fa; }
-        .container { width: 1200px; margin: 0 auto; }
-        header {
-            height: 400px; display: flex; align-items: center; justify-content: center;
-            background-image: url("banner.jpg"); /* 这里改图片名 */
-            background-size: cover; background-position: center;
-            border-radius: 0 0 8px 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        .header-art {
-            font-size: 56px; font-style: italic; font-weight: bold; letter-spacing: 4px;
-            background: linear-gradient(45deg, #d4af37, #ff6b35, #8b0000);
-            -webkit-background-clip: text; background-clip: text; color: transparent;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-            transition: all 0.6s ease;
-        }
-        .header-art:hover { transform: scale(1.08); }
-        nav {
-            background-color: #2c3e50; height: 56px; line-height: 56px; margin: 15px 0;
-            border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        nav ul { list-style: none; display: flex; justify-content: space-around; }
-        nav ul li a { color: #fff; text-decoration: none; font-size: 18px; padding: 0 30px; transition: all 0.3s; }
-        nav ul li a:hover { color: #ff6b35; background-color: #1a252f; border-radius: 4px; }
-        .main { display: flex; gap: 25px; padding: 10px 0 30px; min-height: calc(100vh - 301px); }
-        .left { width: 220px; background-color: #f8f9fa; padding: 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-        .left h3 { color: #2c3e50; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #ff6b35; font-size: 20px; }
-        .feature-item { background-color: #fff; padding: 15px; border-radius: 6px; margin-bottom: 15px; border-left: 3px solid #ff6b35; }
-        .feature-item h4 a { color: #ff6b35; text-decoration: none; }
-        .center { flex: 1; background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
-        .center h2 { color: #2c3e50; margin-bottom: 25px; font-size: 24px; border-left: 4px solid #ff6b35; padding-left: 15px; }
-        .city-nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 10px; }
-        .city-nav a { display: inline-block; padding: 18px; text-align: center; color: #fff; font-weight: bold; border-radius: 8px; transition: 0.3s; }
-        .right { width: 280px; background-color: #f8f9fa; padding: 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-        .right h3 { color: #2c3e50; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #ff6b35; font-size: 20px; }
-        footer { height: 80px; background-color: #2c3e50; color: #fff; text-align: center; line-height: 80px; border-radius: 8px 8px 0 0; }
-
-        @media (max-width: 1200px) { .container { width: 95%; } .main { flex-direction: column; } .left, .right { width: 100%; } }
-        @media (max-width: 768px) { header { height: 160px; } .header-art { font-size: 32px; } nav { height: auto; } nav ul { flex-direction: column; text-align: center; } .city-nav { grid-template-columns: repeat(2, 1fr); } }
-
-        #heritage-dashboard { margin-top: 30px; width: 100%; background: #0f172a; border-radius: 8px; padding: 20px; }
-        .dash-title { text-align: center; font-size: 22px; margin-bottom: 20px; color: #7dd3fc; font-weight: bold; }
-        .dash-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .dash-card { background: #1e293b; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); min-height: 300px; }
-        .card-title { font-size: 16px; margin-bottom: 10px; color: #bae6fd; font-weight: bold; text-align: center; }
-        .chart-box, .map-box, .heatmap-box { width: 100%; height: 260px; }
-        .list-box { width: 100%; height: 260px; overflow-y: auto; font-size: 14px; line-height: 1.6; color: #e0f2fe; }
-        .list-item { padding: 6px 0; border-bottom: 1px dashed #334155; }
-    </style>
+    <title>山西省各市国保单位热力图</title>
+    <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script type="text/javascript" src="https://geo.datav.aliyun.com/areas_v3/bound/140000_full.json"></script>
 </head>
 <body>
-    <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js"></script>
+    <div id="heatmap_shanxi" class="chart-container" style="width:1200px; height:800px;"></div>
     <script>
-        new CozeWebSDK.WebChatClient({
-            config: { bot_id: '7626396780766609459' },
-            componentProps: { title: '山西文旅助手', clearButton: true, position: 'right' },
-            auth: { type: 'token', token: 'pat_SqeMFAKZsLiCal3IJ83rnhQ1GjFdMdv0vp3wziFeCQ0RK2yPJ6dZwSdtiEa2QCyn', onRefreshToken: () => 'pat_SqeMFAKZsLiCal3IJ83rnhQ1GjFdMdv0vp3wziFeCQ0RK2yPJ6dZwSdtiEa2QCyn' }
+        var chart = echarts.init(
+            document.getElementById('heatmap_shanxi'), 
+            'white', 
+            {renderer: 'canvas', locale: 'ZH'}
+        );
+
+        var option = {
+            title: [
+                {
+                    show: true,
+                    text: '山西省各市国保单位分布热力图',
+                    subtext: '数据来源：山西省各市国保单位数量统计',
+                    left: 'center',
+                    top: 10,
+                    textStyle: {
+                        fontSize: 20,
+                        fontWeight: 'bold',
+                        color: '#333'
+                    },
+                    subtextStyle: {
+                        fontSize: 12,
+                        color: '#666'
+                    }
+                }
+            ],
+            tooltip: {
+                show: true,
+                trigger: 'item',
+                triggerOn: 'mousemove',
+                formatter: function(params) {
+                    return `<div style="padding:5px;">
+                        <strong>${params.name}</strong><br/>
+                        国保单位数量：<span style="color:#B30000;font-weight:bold;">${params.value}</span> 处<br/>
+                        热度：<span style="color:#D6604D;">${getHeatLevel(params.value)}</span>
+                    </div>`;
+                },
+                backgroundColor: 'rgba(255,255,255,0.9)',
+                borderColor: '#ddd',
+                borderWidth: 1,
+                borderRadius: 6,
+                textStyle: {
+                    fontSize: 14
+                }
+            },
+            visualMap: {
+                show: true,
+                type: 'continuous',
+                min: 0,
+                max: 110,
+                left: 'right',
+                top: 'center',
+                inRange: {
+                    color: ['#FFFFE0', '#FFD700', '#FF8C00', '#FF4500', '#DC143C', '#8B0000']
+                },
+                calculable: true,
+                hoverLink: true,
+                text: ['高热度', '低热度'],
+                textStyle: {
+                    fontSize: 12,
+                    color: '#333'
+                },
+                itemWidth: 20,
+                itemHeight: 150
+            },
+            series: [
+                {
+                    type: 'map',
+                    name: '国保单位数量',
+                    map: '山西',
+                    roam: true,
+                    zoom: 1.2,
+                    aspectScale: 0.8,
+                    label: {
+                        show: true,
+                        fontSize: 11,
+                        color: '#333',
+                        fontWeight: '500',
+                        formatter: '{b}\n{c}处'
+                    },
+                    emphasis: {
+                        label: {
+                            color: '#fff',
+                            fontSize: 12,
+                            fontWeight: 'bold'
+                        },
+                        itemStyle: {
+                            areaColor: '#FF6347',
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        }
+                    },
+                    // 【核心修复】正确数据，名称完全匹配地图
+                    data: [
+                        {"name": "运城市", "value": 103},
+                        {"name": "长治市", "value": 74},
+                        {"name": "晋城市", "value": 72},
+                        {"name": "晋中市", "value": 70},
+                        {"name": "临汾市", "value": 54},
+                        {"name": "吕梁市", "value": 39},
+                        {"name": "太原市", "value": 38},
+                        {"name": "忻州市", "value": 36},
+                        {"name": "大同市", "value": 32},
+                        {"name": "阳泉市", "value": 11},
+                        {"name": "朔州市", "value": 8}
+                    ]
+                }
+            ]
+        };
+
+        function getHeatLevel(value) {
+            if (value >= 80) return '极高';
+            else if (value >= 60) return '高';
+            else if (value >= 40) return '中高';
+            else if (value >= 20) return '中等';
+            else if (value >= 10) return '低';
+            else return '极低';
+        }
+
+        // 【核心修复】加载地图后注册+渲染
+        fetch('https://geo.datav.aliyun.com/areas_v3/bound/140000_full.json')
+            .then(res => res.json())
+            .then(geoJson => {
+                echarts.registerMap('山西', geoJson);
+                chart.setOption(option);
+            });
+
+        window.addEventListener('resize', function() {
+            chart.resize();
         });
     </script>
-
-    <div class="container">
-        <header><h1 class="header-art">表里山河 · 晋善晋美</h1></header>
-        <nav>
-            <ul>
-                <li><a href="古建陈列1.html">古建陈列</a></li>
-                <li><a href="美食推荐1.html">美食推荐</a></li>
-                <li><a href="山西文创.html">文创展示</a></li>
-                <li><a href="留言板.html">留言板</a></li>
-                <li><a href="登录.html">登录</a></li>
-            </ul>
-        </nav>
-        <div class="main">
-            <div class="left">
-                <h3>山西热门景点</h3>
-                <div class="feature-item"><h4><a href="云冈石窟.html">云冈石窟</a></h4><p>世界文化遗产</p><p>大同市城西</p></div>
-                <div class="feature-item"><h4><a href="平遥古城.html">平遥古城</a></h4><p>世界文化遗产</p><p>晋中市平遥县</p></div>
-                <div class="feature-item"><h4><a href="五台山.html">五台山</a></h4><p>佛教四大名山</p><p>忻州市五台县</p></div>
-                <div class="feature-item"><h4><a href="晋祠.html">晋祠</a></h4><p>古建筑博物馆</p><p>太原市晋源区</p></div>
-                <div class="feature-item"><h4><a href="悬空寺.html">悬空寺</a></h4><p>空中奇景</p><p>大同市浑源县</p></div>
-                <div class="feature-item"><h4><a href="壶口瀑布.html">壶口瀑布</a></h4><p>黄河第一瀑</p><p>临汾市吉县</p></div>
-            </div>
-            <div class="center">
-                <h2>请选择你想去的城市</h2>
-                <div class="city-nav">
-                    <a href="太原.html" style="background:#ff6b35">太原市</a>
-                    <a href="大同.html" style="background:#e74c3c">大同市</a>
-                    <a href="阳泉.html" style="background:#f39c12">阳泉市</a>
-                    <a href="长治.html" style="background:#2ecc71">长治市</a>
-                    <a href="晋城.html" style="background:#3498db">晋城市</a>
-                    <a href="朔州.html" style="background:#9b59b6">朔州市</a>
-                    <a href="忻州.html" style="background:#1abc9c">忻州市</a>
-                    <a href="晋中.html" style="background:#e67e22">晋中市</a>
-                    <a href="临汾.html" style="background:#34495e">临汾市</a>
-                    <a href="运城.html" style="background:#7f8c8d">运城市</a>
-                    <a href="吕梁.html" style="background:#8e44ad">吕梁市</a>
-                </div>
-                <div id="heritage-dashboard">
-                    <div class="dash-title">山西省全省重点文物保护单位·全景可视化</div>
-                    <div class="dash-grid">
-                        <div class="dash-card"><div class="card-title">各市国保单位数量统计</div><div id="chart-city" class="chart-box"></div></div>
-                        <div class="dash-card"><div class="card-title">文物类型分布</div><div id="chart-type" class="chart-box"></div></div>
-                        <div class="dash-card"><div class="card-title">山西省国保单位地理分布</div><div id="map-container" class="map-box"></div></div>
-                        <div class="dash-card"><div class="card-title">山西省各市国保单位热力图</div><div id="heatmap_shanxi" class="heatmap-box"></div></div>
-                        <div class="dash-card"><div class="card-title">各批次国保单位数量变化</div><div id="chart-line" class="chart-box"></div></div>
-                        <div class="dash-card"><div class="card-title">重点国保单位名录</div><div class="list-box" id="list-box"></div></div>
-                    </div>
-                </div>
-            </div>
-            <div class="right">
-                <h3>山西特色名片</h3>
-                <div class="feature-item"><h4>古建之乡</h4><p>中国古代建筑博物馆</p></div>
-                <div class="feature-item"><h4>晋商文化</h4><p>明清商业辉煌</p></div>
-                <div class="feature-item"><h4>面食之都</h4><p>刀削面、剔尖...</p></div>
-                <div class="feature-item"><h4>黄河文化</h4><p>黄河流经965公里</p></div>
-            </div>
-        </div>
-        <footer>山川形胜 · 怡然晋中</footer>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-    
-    <!-- ######## 核心修复：这里写入山西完整地图 GeoJSON ######## -->
-    <script>
-        const shanxiGeoJson = {
-            "type": "FeatureCollection",
-            "features": [
-                {"type":"Feature","properties":{"name":"太原市","adcode":140100},"geometry":{"type":"MultiPolygon","coordinates":[[[[112.7663,37.7663],[112.7718,37.7553],[112.7828,37.7498],[112.7938,37.7498],[112.8048,37.7553],[112.8103,37.7663],[112.8103,37.7773],[112.8048,37.7883],[112.7938,37.7938],[112.7828,37.7938],[112.7718,37.7883],[112.7663,37.7773],[112.7663,37.7663]]]]},
-                {"type":"Feature","properties":{"name":"大同市","adcode":140200},"geometry":{"type":"MultiPolygon","coordinates":[[[[113.2998,40.0998],[113.3053,40.0888],[113.3163,40.0833],[113.3273,40.0833],[113.3383,40.0888],[113.3438,40.0998],[113.3438,40.1108],[113.3383,40.1218],[113.3273,40.1273],[113.3163,40.1273],[113.3053,40.1218],[113.2998,40.1108],[113.2998,40.0998]]]]},
-                {"type":"Feature","properties":{"name":"阳泉市","adcode":140300},"geometry":{"type":"MultiPolygon","coordinates":[[[[113.5998,37.8998],[113.6053,37.8888],[113.6163,37.8833],[113.6273,37.8833],[113.6383,37.8888],[113.6438,37.8998],[113.6
+</body>
+</html>
