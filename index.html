@@ -316,24 +316,25 @@
 
 
 <body>
-<script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js"></script>
+    <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js"></script>
 <script>
-  new CozeWebSDK.WebChatClient({
-    config: {
-      bot_id: '7626396780766609459',
-      islframe: false
-    },
-    componentProps: {
-      title: 'Coze',
-    },
-    auth: {
-      type: 'token',
-      token: 'pat_SqeMFAKZsLiCal3IJ83rnhQ1GjFdMdv0vp3wziFeCQ0RK2yPJ6dZwSdtiEa2QCyn',
-      onRefreshToken: function () {
-        return 'pat_SqeMFAKZsLiCal3IJ83rnhQ1GjFdMdv0vp3wziFeCQ0RK2yPJ6dZwSdtiEa2QCyn'
-      }
+new CozeWebSDK.WebChatClient({
+  config: {
+    bot_id: '7626396780766609459', // 保持你的ID不变
+  },
+  componentProps: {
+    title: 'Coze',
+    clearButton: true, // ✅ 开启清空按钮
+    position: 'right' // 按钮在右上角
+  },
+  auth: {
+    type: 'token',
+    token: 'pat_SqeMFAKZsLiCal3IJ83rnhQ1GjFdMdv0vp3wziFeCQ0RK2yPJ6dZwSdtiEa2QCyn',
+    onRefreshToken: function () {
+      return 'pat_SqeMFAKZsLiCal3IJ83rnhQ1GjFdMdv0vp3wziFeCQ0RK2yPJ6dZwSdtiEa2QCyn'
     }
-  });
+  }
+});
 </script>
     <div class="container">
         <header>
