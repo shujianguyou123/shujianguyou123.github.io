@@ -13,11 +13,12 @@
             font-family: "Microsoft Yahei", "SimHei", sans-serif;
         }
 
-        /* 页面容器 */
-        .container {
-            width: 1200px;
-            margin: 0 auto;
-        }
+       /* 页面容器（核心修复：取消固定1200px限制，适配全屏） */
+.container {
+    width: 98%;  /* 用百分比代替固定1200px，适配所有屏幕 */
+    max-width: 1920px; /* 大屏最大宽度限制，避免无限拉伸 */
+    margin: 0 auto;
+}
 
         /* 1. 头部区域（核心：斜体艺术字+渐变+背景图） */
         header {
@@ -77,20 +78,20 @@
             border-radius: 4px;
         }
 
-       /* 3. 主体三栏容器 */
+/* 3. 主体三栏容器（核心修复：强制不换行、防挤压） */
 .main {
     display: flex;
-    gap: 20px;        /* 缩小间距，避免挤爆 */
+    gap: 20px;
     padding: 10px 0 30px;
     min-height: calc(100vh - 301px);
-    width: 100%;      /* 父层铺满 */
-    flex-wrap: nowrap; /* 强制不换行 */
+    flex-wrap: nowrap; /* 强制三栏不换行，绝对不挤 */
+    align-items: flex-start; /* 顶部对齐，避免高低不齐 */
 }
 
-/* 左栏：山西景点导航 */
+/* 左栏：山西景点导航（固定宽度+最小宽度，绝不被压缩） */
 .left {
-    width: 230px;     /* 固定宽度 */
-    min-width: 230px;
+    width: 220px;
+    min-width: 220px; /* 强制最小宽度，绝不被挤窄 */
     background-color: #f8f9fa;
     padding: 25px;
     border-radius: 8px;
@@ -123,10 +124,10 @@
     border-left: 3px solid #ff6b35;
 }
 
-/* 中栏：主体内容区 */
+/* 中栏：主体内容区（自适应+最小宽度，保证城市按钮完整显示） */
 .center {
     flex: 1;
-    min-width: 600px; /* 中间最小宽度 */
+    min-width: 700px; /* 给中栏足够最小宽度，保证3列城市按钮不挤 */
     background-color: #fff;
     padding: 30px;
     border-radius: 8px;
@@ -140,7 +141,7 @@
     padding-left: 15px;
 }
 
-/* 十一个城市导航布局 */
+/* 十一个城市导航布局（适配中栏宽度，保证按钮完整） */
 .city-nav {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -163,10 +164,10 @@
     transform: translateY(-3px);
 }
 
-/* 右栏：山西特色展示 */
+/* 右栏：山西特色展示（固定宽度+最小宽度，绝不被压缩） */
 .right {
-    width: 280px;     /* 固定宽度 */
-    min-width: 280px;
+    width: 280px;
+    min-width: 280px; /* 强制最小宽度，绝不被挤窄 */
     background-color: #f8f9fa;
     padding: 25px;
     border-radius: 8px;
