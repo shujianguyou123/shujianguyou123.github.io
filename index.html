@@ -13,11 +13,12 @@
             font-family: "Microsoft Yahei", "SimHei", sans-serif;
         }
 
-        /* 页面容器 */
-        .container {
-            width: 1200px;
-            margin: 0 auto;
-        }
+       /* 页面容器（核心修复：取消固定1200px限制，适配全屏） */
+.container {
+    width: 98%;  /* 用百分比代替固定1200px，适配所有屏幕 */
+    max-width: 1920px; /* 大屏最大宽度限制，避免无限拉伸 */
+    margin: 0 auto;
+}
 
         /* 1. 头部区域（核心：斜体艺术字+渐变+背景图） */
         header {
@@ -76,130 +77,6 @@
             background-color: #1a252f;
             border-radius: 4px;
         }
-
-/* 3. 主体三栏容器（核心修复：强制不换行、防挤压） */
-.main {
-    display: flex;
-    gap: 20px;
-    padding: 10px 0 30px;
-    min-height: calc(100vh - 301px);
-    flex-wrap: nowrap; /* 强制三栏不换行，绝对不挤 */
-    align-items: flex-start; /* 顶部对齐，避免高低不齐 */
-}
-
-/* 左栏：山西景点导航（固定宽度+最小宽度，绝不被压缩） */
-.left {
-    width: 220px;
-    min-width: 220px; /* 强制最小宽度，绝不被挤窄 */
-    background-color: #f8f9fa;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-.left h3 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #ff6b35;
-    font-size: 20px;
-}
-.left ul {
-    list-style: none;
-}
-.left ul li {
-    margin-bottom: 15px;
-}
-.left ul li a {
-    color: #34495e;
-    text-decoration: none;
-    font-size: 16px;
-    transition: all 0.3s;
-    display: block;
-    padding: 6px 0;
-}
-.left ul li a:hover {
-    color: #ff6b35;
-    padding-left: 8px;
-    border-left: 3px solid #ff6b35;
-}
-
-/* 中栏：主体内容区（自适应+最小宽度，保证城市按钮完整显示） */
-.center {
-    flex: 1;
-    min-width: 700px; /* 给中栏足够最小宽度，保证3列城市按钮不挤 */
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-}
-.center h2 {
-    color: #2c3e50;
-    margin-bottom: 25px;
-    font-size: 24px;
-    border-left: 4px solid #ff6b35;
-    padding-left: 15px;
-}
-
-/* 十一个城市导航布局（适配中栏宽度，保证按钮完整） */
-.city-nav {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 10px;
-}
-.city-nav a {
-    display: inline-block;
-    padding: 18px;
-    text-align: center;
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    transition: 0.3s;
-}
-.city-nav a:hover {
-    opacity: 0.85;
-    transform: translateY(-3px);
-}
-
-/* 右栏：山西特色展示（固定宽度+最小宽度，绝不被压缩） */
-.right {
-    width: 280px;
-    min-width: 280px; /* 强制最小宽度，绝不被挤窄 */
-    background-color: #f8f9fa;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-.right h3 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #ff6b35;
-    font-size: 20px;
-}
-.feature-item {
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 6px;
-    margin-bottom: 15px;
-    transition: all 0.3s;
-}
-.feature-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-.feature-item h4 {
-    color: #ff6b35;
-    margin-bottom: 8px;
-    font-size: 18px;
-}
-.feature-item p {
-    color: #666;
-    font-size: 14px;
-    line-height: 1.6;
-}
 
         /* 4. 页脚 */
         footer {
@@ -314,11 +191,13 @@
         }
         /* ========== 大屏样式结束 ========== */
 
-        /* 新增：国保地图和热力图容器样式（确保和原文件一致） */
-        #shanxi-map-container, #shanxi-heatmap-container {
+        /* 新增：嵌入HTML文件的容器样式 */
+        .embedded-html {
             width: 100%;
-            height: 800px;
-            margin: 20px 0;
+            height: 300px; /* 设置一个合适的高度 */
+            border: none; /* 移除边框 */
+            border-radius: 4px; /* 轻微圆角 */
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -447,364 +326,8 @@ new CozeWebSDK.WebChatClient({
                     </div>
                 </div>
 
-                <!-- 山西国保地图（完整嵌入原文件代码） -->
-                <div id="shanxi-map-container">
-                    <script type="text/javascript" src="https://assets.pyecharts.org/assets/v6/echarts.min.js"></script>
-                    <script type="text/javascript" src="https://assets.pyecharts.org/assets/v6/maps/shanxi.js"></script>
-                    <div id="8a8b909960404fd4a78f6abce438b8c8" style="width:1000px; height:800px;"></div>
-                    <script>
-                        var chart_8a8b909960404fd4a78f6abce438b8c8 = echarts.init(
-                            document.getElementById('8a8b909960404fd4a78f6abce438b8c8'), 'white', {renderer: 'canvas', locale: 'ZH'});
-                        var option_8a8b909960404fd4a78f6abce438b8c8 = {
-                    "animation": true,
-                    "animationThreshold": 2000,
-                    "animationDuration": 1000,
-                    "animationEasing": "cubicOut",
-                    "animationDelay": 0,
-                    "animationDurationUpdate": 300,
-                    "animationEasingUpdate": "cubicOut",
-                    "animationDelayUpdate": 0,
-                    "aria": {
-                        "enabled": false
-                    },
-                    "series": [
-                        {
-                            "type": "map",
-                            "name": "\u56fd\u4fdd\u5355\u4f4d\u6570\u91cf",
-                            "label": {
-                                "show": true,
-                                "margin": 8,
-                                "fontSize": 12,
-                                "formatter": "{b}\n{c}\u5904",
-                                "richInheritPlainLabel": true,
-                                "valueAnimation": false
-                            },
-                            "map": "\u5c71\u897f",
-                            "data": [
-                                {
-                                    "name": "\u8fd0\u57ce\u5e02",
-                                    "value": 103
-                                },
-                                {
-                                    "name": "\u957f\u6cbb\u5e02",
-                                    "value": 74
-                                },
-                                {
-                                    "name": "\u664b\u57ce\u5e02",
-                                    "value": 72
-                                },
-                                {
-                                    "name": "\u664b\u4e2d\u5e02",
-                                    "value": 70
-                                },
-                                {
-                                    "name": "\u4e34\u6c7e\u5e02",
-                                    "value": 54
-                                },
-                                {
-                                    "name": "\u5415\u6881\u5e02",
-                                    "value": 39
-                                },
-                                {
-                                    "name": "\u592a\u539f\u5e02",
-                                    "value": 38
-                                },
-                                {
-                                    "name": "\u5ffb\u5dde\u5e02",
-                                    "value": 36
-                                },
-                                {
-                                    "name": "\u5927\u540c\u5e02",
-                                    "value": 32
-                                },
-                                {
-                                    "name": "\u9633\u6cc9\u5e02",
-                                    "value": 11
-                                },
-                                {
-                                    "name": "\u6714\u5dde\u5e02",
-                                    "value": 8
-                                }
-                            ],
-                            "roam": true,
-                            "aspectScale": 0.75,
-                            "nameProperty": "name",
-                            "selectedMode": false,
-                            "zoom": 1.1,
-                            "zlevel": 0,
-                            "z": 2,
-                            "seriesLayoutBy": "column",
-                            "datasetIndex": 0,
-                            "mapValueCalculation": "sum",
-                            "showLegendSymbol": true,
-                            "preserveAspect": false,
-                            "clip": false,
-                            "tooltip": {
-                                "show": true,
-                                "trigger": "item",
-                                "triggerOn": "mousemove|click",
-                                "axisPointer": {
-                                    "type": "line"
-                                },
-                                "showContent": true,
-                                "alwaysShowContent": false,
-                                "showDelay": 0,
-                                "hideDelay": 100,
-                                "enterable": false,
-                                "confine": false,
-                                "appendToBody": false,
-                                "transitionDuration": 0.4,
-                                "displayTransition": true,
-                                "formatter": "{b}<br/>\u56fd\u4fdd\u6570\u91cf\uff1a{c} \u5904",
-                                "textStyle": {
-                                    "fontSize": 14,
-                                    "richInheritPlainLabel": true
-                                },
-                                "borderWidth": 0,
-                                "padding": 5,
-                                "order": "seriesAsc"
-                            },
-                            "emphasis": {},
-                            "rippleEffect": {
-                                "show": true,
-                                "brushType": "stroke",
-                                "scale": 2.5,
-                                "period": 4
-                            }
-                        }
-                    ],
-                    "legend": [
-                        {
-                            "data": [
-                                "\u56fd\u4fdd\u5355\u4f4d\u6570\u91cf"
-                            ],
-                            "selected": {},
-                            "show": true,
-                            "padding": 5,
-                            "itemGap": 10,
-                            "itemWidth": 25,
-                            "itemHeight": 14,
-                            "backgroundColor": "transparent",
-                            "borderColor": "#ccc",
-                            "borderRadius": 0,
-                            "pageButtonItemGap": 5,
-                            "pageButtonPosition": "end",
-                            "pageFormatter": "{current}/{total}",
-                            "pageIconColor": "#2f4554",
-                            "pageIconInactiveColor": "#aaa",
-                            "pageIconSize": 15,
-                            "animationDurationUpdate": 800,
-                            "selector": false,
-                            "selectorPosition": "auto",
-                            "selectorItemGap": 7,
-                            "selectorButtonGap": 10,
-                            "triggerEvent": false
-                        }
-                    ],
-                    "tooltip": {
-                        "show": true,
-                        "trigger": "item",
-                        "triggerOn": "mousemove|click",
-                        "axisPointer": {
-                            "type": "line"
-                        },
-                        "showContent": true,
-                        "alwaysShowContent": false,
-                        "showDelay": 0,
-                        "hideDelay": 100,
-                        "enterable": false,
-                        "confine": false,
-                        "appendToBody": false,
-                        "transitionDuration": 0.4,
-                        "displayTransition": true,
-                        "textStyle": {
-                            "fontSize": 14,
-                            "richInheritPlainLabel": true
-                        },
-                        "borderWidth": 0,
-                        "padding": 5,
-                        "order": "seriesAsc"
-                    },
-                    "title": [
-                        {
-                            "show": true,
-                            "text": "\u5c71\u897f\u7701\u5404\u5e02\u56fd\u4fdd\u5355\u4f4d\u5206\u5e03",
-                            "target": "blank",
-                            "subtext": "\u6570\u636e\u6765\u6e90\uff1a\u5c71\u897f\u7701\u5404\u5e02\u56fd\u4fdd\u5355\u4f4d\u6570\u91cf\u7edf\u8ba1.xlsx",
-                            "subtarget": "blank",
-                            "padding": 5,
-                            "itemGap": 10,
-                            "textAlign": "auto",
-                            "textVerticalAlign": "auto",
-                            "triggerEvent": false
-                        }
-                    ],
-                    "visualMap": {
-                        "show": true,
-                        "type": "continuous",
-                        "min": null,
-                        "max": null,
-                        "inRange": {
-                            "color": [
-                                "#FFFDE7",
-                                "#F9D59B",
-                                "#F4A582",
-                                "#D6604D",
-                                "#B30000"
-                            ]
-                        },
-                        "calculable": true,
-                        "inverse": false,
-                        "splitNumber": 5,
-                        "hoverLink": true,
-                        "orient": "vertical",
-                        "padding": 5,
-                        "showLabel": true,
-                        "itemWidth": 20,
-                        "itemHeight": 140,
-                        "borderWidth": 0
-                    }
-                };
-                        chart_8a8b909960404fd4a78f6abce438b8c8.setOption(option_8a8b909960404fd4a78f6abce438b8c8);
-                    </script>
-                </div>
+                <!-- 已删除：山西国保地图和热力图容器 -->
 
-                <!-- 山西国保热力图（完整嵌入原文件代码） -->
-                <div id="shanxi-heatmap-container">
-                    <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
-                    <script type="text/javascript" src="https://geo.datav.aliyun.com/areas_v3/bound/140000_full.json"></script>
-                    <div id="heatmap_shanxi" style="width:1200px; height:800px;"></div>
-                    <script>
-                        var chart = echarts.init(
-                            document.getElementById('heatmap_shanxi'), 
-                            'white', 
-                            {renderer: 'canvas', locale: 'ZH'}
-                        );
-
-                        var option = {
-                            title: [
-                                {
-                                    show: true,
-                                    text: '热力图',
-                                    left: 'center',
-                                    top: 10,
-                                    textStyle: {
-                                        fontSize: 20,
-                                        fontWeight: 'bold',
-                                        color: '#333'
-                                    },
-                                    subtextStyle: {
-                                        fontSize: 12,
-                                        color: '#666'
-                                    }
-                                }
-                            ],
-                            tooltip: {
-                                show: true,
-                                trigger: 'item',
-                                triggerOn: 'mousemove',
-                                formatter: function(params) {
-                                    return `<div style="padding:5px;">
-                                        <strong>${params.name}</strong><br/>
-                                        国保单位数量：<span style="color:#B30000;font-weight:bold;">${params.value}</span> 处<br/>
-                                        热度：<span style="color:#D6604D;">${getHeatLevel(params.value)}</span>
-                                    </div>`;
-                                },
-                                backgroundColor: 'rgba(255,255,255,0.9)',
-                                borderColor: '#ddd',
-                                borderWidth: 1,
-                                borderRadius: 6,
-                                textStyle: {
-                                    fontSize: 14
-                                }
-                            },
-                            visualMap: {
-                                show: true,
-                                type: 'continuous',
-                                min: 0,
-                                max: 110,
-                                left: 'right',
-                                top: 'center',
-                                inRange: {
-                                    color: ['#FFFFE0', '#FFD700', '#FF8C00', '#FF4500', '#DC143C', '#8B0000']
-                                },
-                                calculable: true,
-                                hoverLink: true,
-                                text: ['高热度', '低热度'],
-                                textStyle: {
-                                    fontSize: 12,
-                                    color: '#333'
-                                },
-                                itemWidth: 20,
-                                itemHeight: 150
-                            },
-                            series: [
-                                {
-                                    type: 'map',
-                                    name: '国保单位数量',
-                                    map: '山西',
-                                    roam: true,
-                                    zoom: 1.2,
-                                    aspectScale: 0.8,
-                                    label: {
-                                        show: true,
-                                        fontSize: 11,
-                                        color: '#333',
-                                        fontWeight: '500',
-                                        formatter: '{b}\n{c}处'
-                                    },
-                                    emphasis: {
-                                        label: {
-                                            color: '#fff',
-                                            fontSize: 12,
-                                            fontWeight: 'bold'
-                                        },
-                                        itemStyle: {
-                                            areaColor: '#FF6347',
-                                            borderColor: '#fff',
-                                            borderWidth: 2
-                                        }
-                                    },
-                                    // 【核心修复】正确数据，名称完全匹配地图
-                                    data: [
-                                        {"name": "运城市", "value": 103},
-                                        {"name": "长治市", "value": 74},
-                                        {"name": "晋城市", "value": 72},
-                                        {"name": "晋中市", "value": 70},
-                                        {"name": "临汾市", "value": 54},
-                                        {"name": "吕梁市", "value": 39},
-                                        {"name": "太原市", "value": 38},
-                                        {"name": "忻州市", "value": 36},
-                                        {"name": "大同市", "value": 32},
-                                        {"name": "阳泉市", "value": 11},
-                                        {"name": "朔州市", "value": 8}
-                                    ]
-                                }
-                            ]
-                        };
-
-                        function getHeatLevel(value) {
-                            if (value >= 80) return '极高';
-                            else if (value >= 60) return '高';
-                            else if (value >= 40) return '中高';
-                            else if (value >= 20) return '中等';
-                            else if (value >= 10) return '低';
-                            else return '极低';
-                        }
-
-                        // 【核心修复】加载地图后注册+渲染
-                        fetch('https://geo.datav.aliyun.com/areas_v3/bound/140000_full.json')
-                            .then(res => res.json())
-                            .then(geoJson => {
-                                echarts.registerMap('山西', geoJson);
-                                chart.setOption(option);
-                            });
-
-                        window.addEventListener('resize', function() {
-                            chart.resize();
-                        });
-                    </script>
-                </div>
             </div>
 
             <div class="right">
@@ -829,16 +352,14 @@ new CozeWebSDK.WebChatClient({
                 <!-- 新增：国保可视化链接 -->
                 <h3 style="margin-top:25px;">国保数据可视化</h3>
                 <div class="feature-item">
-                    <a href="#shanxi-map-container" style="text-decoration:none;">
-    <h4>三晋国保地理图鉴</h4>
-</a>
-                    <p>一张图解锁三晋国宝版图！以山西全域为画布，清晰标注11地市行政边界，完整铺展全省国保单位的地理脉络，带你一眼看懂千年文物在三晋大地的星罗棋布，解锁每一处国保的地理坐标，开启沉浸式寻根之旅。</p>
+                    <h4>三晋国保地理图鉴</h4>
+                    <!-- 插入山西国保地图.html -->
+                    <iframe src="山西国保地图.html" class="embedded-html"></iframe>
                 </div>
                 <div class="feature-item">
-                   <a href="#shanxi-heatmap-container" style="text-decoration:none;">
-    <h4>山西国保热力榜</h4>
-</a>
-                    <p>用色彩解锁山西国保密码！以热度梯度直观呈现11地市国保数量差异，从暖黄到赤红的渐变，精准标注各市国保富集度，一眼看清晋南、晋东南等国保高地，带你秒懂山西“文物大省”的硬核实力，一键解锁寻古打卡的宝藏路线。</p>
+                    <h4>山西国保热力榜</h4>
+                    <!-- 插入热力图.html -->
+                    <iframe src="热力图.html" class="embedded-html"></iframe>
                 </div>
             </div>
         </div>
