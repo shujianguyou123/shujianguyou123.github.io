@@ -308,31 +308,56 @@
             border-radius: 5px;
         }
         /* ========== 大屏样式结束 ========== */
+
+        /* 新增：大屏下方图片展示样式 */
+        .img-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .img-card {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        .img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .img-card img:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 
-
 <body>
     <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js"></script>
-<script>
-new CozeWebSDK.WebChatClient({
-  config: {
-    bot_id: '7626396780766609459',
-  },
-  componentProps: {
-    title: 'Coze',
-    clearButton: true,
-    position: 'right'
-  },
-  auth: {
-    type: 'token',
-    token: 'pat_SqeMFAKZsLiCal3IJ83rnhQ1GjFdMdv0vp3wziFeCQ0RK2yPJ6dZwSdtiEa2QCyn',
-    onRefreshToken: function () {
-      return 'pat_SqeMFAKZsLiCal3IJ83rnhQ1GjFdMdv0vp3wziFeCQ0RK2yPJ6dZwSdtiEa2QCyn'
-    }
-  }
-});
-</script>
+    <script>
+        new CozeWebSDK.WebChatClient({
+            config: {
+                bot_id: '7626396780766609459',
+            },
+            componentProps: {
+                title: 'Coze',
+                clearButton: true,
+                position: 'right'
+            },
+            auth: {
+                type: 'token',
+                token: 'pat_SqeMFAKZsLiCal3IJ83rnhQ1GjFdMdv0vp3wziFeCQ0RK2yPJ6dZwSdtiEa2QCyn',
+                onRefreshToken: function () {
+                    return 'pat_SqeMFAKZsLiCal3IJ83rnhQ1GjFdMdv0vp3wziFeCQ0RK2yPJ6dZwSdtiEa2QCyn'
+                }
+            }
+        });
+    </script>
+
     <div class="container">
         <header>
         </header>
@@ -352,44 +377,44 @@ new CozeWebSDK.WebChatClient({
                 <h3>山西热门景点</h3>
                 <ul>
                     <div class="feature-item">
-                    <a href="云冈石窟.html"><h4>云冈石窟</h4></a>
-                    <p>国家5A级旅游景区、世界文化遗产、全国重点文物保护单位</p>
-                    <p>山西省大同市城西约16公里的武州山南麓</p>
+                        <a href="云冈石窟.html"><h4>云冈石窟</h4></a>
+                        <p>国家5A级旅游景区、世界文化遗产、全国重点文物保护单位</p>
+                        <p>山西省大同市城西约16公里的武州山南麓</p>
                     </div>
-                 <div class="feature-item">
-                    <a href="平遥古城.html"><h4>平遥古城</h4></a>
-                    <p>国家5A级旅游景区、世界文化遗产、国家历史文化名城</p>
-                    <p>山西省晋中市平遥县</p>
+                    <div class="feature-item">
+                        <a href="平遥古城.html"><h4>平遥古城</h4></a>
+                        <p>国家5A级旅游景区、世界文化遗产、国家历史文化名城</p>
+                        <p>山西省晋中市平遥县</p>
                     </div>
-                 <div class="feature-item">
-                    <a href="五台山.html"><h4>五台山</h4></a>
-                    <p>国家5A级旅游景区、世界文化景观遗产、中国佛教四大名山之一</p>
-                    <p>山西省忻州市五台县境内</p>
+                    <div class="feature-item">
+                        <a href="五台山.html"><h4>五台山</h4></a>
+                        <p>国家5A级旅游景区、世界文化景观遗产、中国佛教四大名山之一</p>
+                        <p>山西省忻州市五台县境内</p>
                     </div>
-                 <div class="feature-item">
-                    <a href="晋祠.html"><h4>晋祠</h4></a>
-                    <p>国家5A级旅游景区、全国重点文物保护单位、国家二级博物馆。</p>
-                    <p>山西省太原市晋源区晋祠镇</p>
+                    <div class="feature-item">
+                        <a href="晋祠.html"><h4>晋祠</h4></a>
+                        <p>国家5A级旅游景区、全国重点文物保护单位、国家二级博物馆。</p>
+                        <p>山西省太原市晋源区晋祠镇</p>
                     </div>
-                 <div class="feature-item">
-                    <a href="悬空寺.html"><h4>悬空寺</h4></a>
-                    <p>国家4A级旅游景区、全国重点文物保护单位</p>
-                    <p>山西省大同市浑源县永安镇</p>
+                    <div class="feature-item">
+                        <a href="悬空寺.html"><h4>悬空寺</h4></a>
+                        <p>国家4A级旅游景区、全国重点文物保护单位</p>
+                        <p>山西省大同市浑源县永安镇</p>
                     </div>
-                 <div class="feature-item">
-                    <a href="壶口瀑布.html"><h4>壶口瀑布</h4></a>
-                    <p>国家5A级旅游景区、国家级风景名胜区、国家地质公园</p>
-                    <p>山西省临汾市吉县壶口镇</p>
+                    <div class="feature-item">
+                        <a href="壶口瀑布.html"><h4>壶口瀑布</h4></a>
+                        <p>国家5A级旅游景区、国家级风景名胜区、国家地质公园</p>
+                        <p>山西省临汾市吉县壶口镇</p>
                     </div>
-                 <div class="feature-item">
-                    <a href="王家大院.html"><h4>王家大院</h4></a>
-                    <p>国家4A级旅游景区、列入中国世界文化遗产预备名单</p>
-                    <p>山西省晋中市灵石县静升镇静升村</p>
+                    <div class="feature-item">
+                        <a href="王家大院.html"><h4>王家大院</h4></a>
+                        <p>国家4A级旅游景区、列入中国世界文化遗产预备名单</p>
+                        <p>山西省晋中市灵石县静升镇静升村</p>
                     </div>
-                 <div class="feature-item">
-                    <a href="乔家大院.html"><h4>乔家大院</h4></a>
-                    <p>国家5A级旅游景区、全国重点文物保护单位、国家二级博物馆</p>
-                    <p>山西省晋中市祁县东观镇乔家堡村</p>
+                    <div class="feature-item">
+                        <a href="乔家大院.html"><h4>乔家大院</h4></a>
+                        <p>国家5A级旅游景区、全国重点文物保护单位、国家二级博物馆</p>
+                        <p>山西省晋中市祁县东观镇乔家堡村</p>
                     </div>
                 </ul>
             </div>
@@ -434,6 +459,17 @@ new CozeWebSDK.WebChatClient({
                         </div>
                     </div>
                 </div>
+
+                <!-- ========== 可视化下方插入两张图片 ========== -->
+                <div class="img-row">
+                    <div class="img-card">
+                        <img src="山西国保地图.png" >
+                    </div>
+                    <div class="img-card">
+                        <img src="热力图 .png" >
+                    </div>
+                </div>
+                <!-- ========== 图片插入结束 ========== -->
             </div>
 
             <div class="right">
@@ -458,20 +494,34 @@ new CozeWebSDK.WebChatClient({
                 <!-- 新增：国保可视化链接 -->
                 <h3 style="margin-top:25px;">国保数据可视化</h3>
                 <div class="feature-item">
-                        <h4>三晋国保地理图鉴</h4>
-                    <p>一张图解锁三晋国宝版图！以山西全域为画布，清晰标注11地市行政边界，完整铺展全省国保单位的地理脉络，带你一眼看懂千年文物在三晋大地的星罗棋布，解锁每一处国保的地理坐标，开启沉浸式寻根之旅。</p>
+                    <h4>一图摸清三晋文物家底</h4>
+                    <p>一图看懂三晋文物家底！条形图直现11市国保格局，运城领跑全省，一眼摸清各地文物富集度。</p>
                 </div>
                 <div class="feature-item">
-                    <a href="热力图.html" style="text-decoration:none;">
-                        <h4>山西国保热力榜</h4>
-                    </a>
-                    <p>用色彩解锁山西国保密码！以热度梯度直观呈现11地市国保数量差异，从暖黄到赤红的渐变，精准标注各市国保富集度，一眼看清晋南、晋东南等国保高地，带你秒懂山西“文物大省”的硬核实力，一键解锁寻古打卡的宝藏路线。</p>
+                    <h4>一眼看懂山西文物结构</h4>
+                    <p>环形图解锁山西文物密码！古建筑为绝对核心，多元品类齐全，尽显“中国古建艺术博物馆”硬核实力。</p>
+                </div>
+                <div class="feature-item">
+                    <h4>一图见证文保传承历程</h4>
+                    <p>折线图还原三晋文保历程！动态呈现8批国保数量变迁，第7批达峰值，见证千年文脉传承之路。</p>
+                </div>
+                <div class="feature-item">
+                    <h4>一键解锁三晋文化地标</h4>
+                    <p>一键解锁三晋文化地标！精选云冈、悬空寺等顶级IP，打造寻古打卡宝藏指南。</p>
+                </div>
+                <div class="feature-item">
+                    <h4>三晋国保地理图鉴</h4>
+                    <p>解锁三晋国保版图！ 铺展11地市分布脉络，直击各市地标，开启三晋寻根之旅</p>
+                </div>
+                <div class="feature-item">
+                    <h4>山西国保热力榜</h4>
+                    <p>色彩解锁国保密码，热力梯度标注富集度，秒懂山西文物大省硬核实力。</p>
                 </div>
             </div>
         </div>
 
         <footer>
-           晋善晋美·魅力山西
+            晋善晋美·魅力山西
         </footer>
     </div>
 
